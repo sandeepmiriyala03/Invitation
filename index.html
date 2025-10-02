@@ -1171,6 +1171,67 @@ p {
     #go-to-bottom {
         bottom: 70px;
     }
+}/* --- Gallery Grid (Remains the same) --- */
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+    padding: 5px 0;
+}
+
+/* --- New: Item Wrapper (holds image + button) --- */
+.gallery-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* --- Gallery Image (Update hover/focus to apply to image only) --- */
+.gallery-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default; /* Change cursor back to default since it's not the primary download target */
+}
+
+.gallery-image:hover,
+.gallery-image:focus {
+    transform: scale(1.03); /* Slight scale on image when hovered */
+    box-shadow: 0 6px 15px rgba(179, 107, 0, 0.5); 
+    outline: none;
+}
+
+/* --- New: Download Button Styling --- */
+.image-download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background-color: #ff9800; /* Bright Orange */
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.2s, transform 0.2s;
+    width: 90%; /* Make the button a consistent width */
+    max-width: 150px;
+}
+
+.image-download-btn:hover {
+    background-color: #f57c00;
+    transform: translateY(-1px);
+}
+
+.download-icon-sm {
+    margin-right: 5px;
+    font-size: 1.1rem;
 }
     </style>
 </head>
@@ -1441,16 +1502,30 @@ p {
     <h3 class="media-subheader">
         <span class="material-icons subheader-icon">image</span> చిత్రాలు:
     </h3>
+<div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ">
     
-    <div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ">
-        
+    <div class="gallery-item-wrapper">
         <img src="Image 1.jpg" alt="ఆధ్యాత్మిక జపం" tabindex="0" class="gallery-image" />
-            
-        <img src="Image 2.jpg" alt="ఆలయ అలంకరణ" tabindex="0" class="gallery-image" />
-            
-        <img src="Image 3.jpg" alt="పూజ కార్యక్రమం" tabindex="0" class="gallery-image" />
-            
+        <a href="Image 1.jpg" download="ఆధ్యాత్మిక జపం.jpg" class="image-download-btn">
+            <i class="fas fa-download download-icon-sm"></i> డౌన్‌లోడ్
+        </a>
     </div>
+        
+    <div class="gallery-item-wrapper">
+        <img src="Image 2.jpg" alt="ఆలయ అలంకరణ" tabindex="0" class="gallery-image" />
+        <a href="Image 2.jpg" download="ఆలయ అలంకరణ.jpg" class="image-download-btn">
+            <i class="fas fa-download download-icon-sm"></i> డౌన్‌లోడ్
+        </a>
+    </div>
+        
+    <div class="gallery-item-wrapper">
+        <img src="Image 3.jpg" alt="పూజ కార్యక్రమం" tabindex="0" class="gallery-image" />
+        <a href="Image 3.jpg" download="పూజ కార్యక్రమం.jpg" class="image-download-btn">
+            <i class="fas fa-download download-icon-sm"></i> డౌన్‌లోడ్
+        </a>
+    </div>
+        
+</div>
 </section>
 
 <section id="Members" tabindex="0" class="members-section">
