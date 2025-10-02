@@ -11,484 +11,1618 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css">
     
     <style>
-        /* Reset and Base Styles */
-        *, *::before, *::after { box-sizing: border-box; }
-        body {
-            font-family: 'Noto Sans Telugu', sans-serif;
-            background: #f9f4ed; /* Light Beige */
-            margin: 0; padding: 0;
-            color: #4b3b29; /* Dark Brown Text */
-            line-height: 1.8;
-            font-size: 1.2rem;
-            scroll-behavior: smooth;
-        }
-        .btn {
-            display: inline-flex; align-items: center; gap: 10px;
-            background-color: #f57c00; /* Deep Orange */
-            color: white;
-            padding: 15px 30px; border-radius: 8px;
-            text-decoration: none; font-size: 1.4rem; font-weight: 700;
-            margin-top: 20px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        .btn:hover { background-color: #b35600; transform: translateY(-2px); }
-
-        /* Header and Navigation combined container */
-        #full-menu-container {
-            background: linear-gradient(90deg, #faaf40, #f57c00);
-            position: sticky; top: 0; z-index: 1200;
-            box-shadow: 0 4px 10px rgba(245, 124, 0, 0.3);
-            padding: 10px 25px;
-        }
-        .header-content {
-            display: flex; align-items: center; gap: 20px; color: #4b3b29;
-        }
-        .header-content img {
-            height: 50px; width: 50px; border-radius: 50%;
-            background: #fff4e6; padding: 5px;
-            box-shadow: 0 0 8px rgba(244, 169, 82, 0.8);
-        }
-        .header-content h1 {
-            font-family: 'Roboto Slab', serif; font-weight: 900;
-            font-size: 2.2rem; margin: 0; user-select: none;
-        }
-
-        /* Navigation */
-        nav {
-            display: flex; flex-wrap: nowrap;
-            justify-content: flex-start; align-items: center;
-            padding-top: 15px;
-        }
-        nav.active { flex-wrap: wrap; }
-        nav a {
-            padding: 12px 20px; white-space: nowrap;
-            font-size: 1.35rem; color: #b36b00; font-weight: 700;
-            text-decoration: none; border-radius: 30px;
-            transition: background-color 0.3s, color 0.3s;
-            box-shadow: 0 0 10px rgba(179, 107, 0, 0.15);
-            margin-right: 15px; user-select: none;
-            display: flex; align-items: center; gap: 8px;
-            background-color: #f6e8c3;
-        }
-        nav a:hover, nav a:focus {
-            background-color: #b36b00; color: #fff7e3;
-            outline: none; box-shadow: 0 0 20px rgba(179, 107, 0, 0.7);
-        }
-        
-        /* Hamburger (Mobile Menu Toggle) */
-        .hamburger { display: none; flex-direction: column; justify-content: center; cursor: pointer; margin-left: auto; width: 30px; height: 25px; gap: 5px; }
-        .hamburger span { display: block; width: 100%; height: 4px; background-color: #b36b00; border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
 
 
-        /* Main Content Styling */
-        main { max-width: 900px; margin: 40px auto 80px; padding: 0 20px; }
-        section {
-            background: #fff7e5; padding: 30px 30px 40px;
-            margin-bottom: 45px; border-radius: 20px;
-            box-shadow: 0 8px 15px rgba(230, 175, 45, 0.25);
-            scroll-margin-top: 110px;
-            transition: box-shadow 0.4s ease;
-        }
-        h2 {
-            font-family: 'Roboto Slab', serif; margin-top: 0; margin-bottom: 20px;
-            color: #b36b00; font-weight: 900; font-size: 2.3rem; letter-spacing: 0.06rem;
-        }
-        h3 { 
-            font-family: 'Roboto Slab', serif; 
-            font-weight: 700;
-        }
-        p { font-size: 1.3rem; color: #5c4827; }
-        
-        /* Gallery Styles */
-        .gallery {
-            display: grid; 
-            /* Grid for 3 images - if you want 5, adjust the HTML and minmax value */
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
-            gap: 20px; margin-top: 20px;
-        }
-        .gallery img {
-            width: 100%; border-radius: 18px;
-            box-shadow: 0 6px 15px rgba(179, 107, 0, 0.3);
-            cursor: pointer; transition: transform 0.25s ease;
-        }
-        #video-container { 
-            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; 
-            background: #000; border-radius: 18px; box-shadow: 0 7px 22px rgba(179, 107, 0, 0.3);
-        }
-        #video-container iframe {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
-        }
+  /* --- CSS Reset and Base Styles --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 
-        /* Utility Buttons (Back to Top/Bottom) */
-        .nav-btn {
-            position: fixed; right: 30px; 
-            background-color: #f57c00; color: white; border: none; 
-            border-radius: 50%; padding: 14px 18px; font-size: 1.5rem; 
-            box-shadow: 0 5px 20px rgba(245, 124, 0, 0.7); cursor: pointer; 
-            display: none; z-index: 2000;
-        }
-        #back-to-top { bottom: 85px; }
-        #go-to-bottom { bottom: 30px; }
+/* Defining Color Variables (Purple/Lavender Theme) */
+:root {
+    --color-primary: #6a1b9a; /* Dark Purple */
+    --color-secondary: #e1bee7; /* Medium Lavender */
+    --color-background-light: #f3e5f5; /* Light Lavender */
+    --color-text: #4a148c; /* Very Dark Purple/Text */
+    --color-content-bg: #fff7e5; /* Original Light Beige/Off-White for Main Content */
+    --color-main-text: #4b3b29; /* Dark Brown for Main Content */
+}
 
-        /* Responsive adjustments */
-        @media (max-width: 780px){
-            .hamburger { display: flex; }
-            nav { display: none; flex-direction: column; padding-top: 0; }
-            nav.active { display: flex; }
-            nav a { font-size: 1.2rem; width: 100%; margin: 8px 0; padding: 14px 10px; text-align: left; }
-        }
-        @media (min-width: 781px){
-            .hamburger { display: none; }
-        }
+body {
+    font-family: 'Noto Sans Telugu', sans-serif;
+    background: #f9f4ed; /* Light Beige Body background */
+    margin: 0;
+    padding: 0;
+    color: var(--color-text); /* Use purple text color */
+    line-height: 1.6;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+/* General Button Styling (Using the Orange theme for accent buttons) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background-color: #f57c00; /* Deep Orange Accent */
+    color: white;
+    padding: 16px 36px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    font-weight: 700;
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(245, 124, 0, 0.4);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.4s ease;
+}
+.btn:hover, .btn:focus {
+    background-color: #b35600;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(179, 86, 0, 0.6);
+    outline: none;
+}
+
+
+/* --- Header and Navigation Container --- */
+#full-menu-container {
+    /* Purple Gradient for Header */
+    background: linear-gradient(90deg, var(--color-background-light), var(--color-secondary));
+    position: sticky;
+    top: 0;
+    z-index: 1200;
+    box-shadow: 0 4px 10px rgba(74, 20, 140, 0.25);
+    padding: 10px 20px;
+}
+.header-content {
+    display: flex;
+    align-items: center;
+    /* Crucial for mobile layout */
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 10px;
+}
+.header-content img {
+    /* Only visible if an image exists in HTML */
+    height: 40px; width: 40px; border-radius: 50%;
+    background: #fff4e6; padding: 4px;
+    box-shadow: 0 0 8px rgba(244, 169, 82, 0.8);
+}
+
+/* Fluid Title Styling - Keeps Title and Hamburger on one line */
+.site-title {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 900;
+    /* Fluid font size for responsive shrinking on small devices */
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    margin: 0;
+    color: var(--color-text);
+    line-height: 1.1;
+    flex-grow: 1; /* Allows it to take up space */
+    min-width: 0; /* Ensures it can shrink */
+    white-space: normal; /* Allows long title to wrap if space is exhausted */
+    user-select: none;
+}
+@media (min-width: 781px) {
+    /* Center the title on large screens when no logo is present */
+    .site-title { text-align: center; }
+}
+
+
+/* --- Hamburger (Mobile Menu Toggle) --- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    width: 35px;
+    height: 30px;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    z-index: 1201;
+}
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-primary);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+
+/* --- Navigation Menu (Desktop & Mobile) --- */
+#nav-menu {
+    display: none; /* Hidden by default for mobile-first approach */
+    max-width: 900px;
+    margin: 15px auto 0;
+    padding: 0;
+    flex-wrap: nowrap; /* Keep flat on desktop */
+    justify-content: space-between;
+    background-color: transparent;
+    box-shadow: none;
+}
+.nav-link {
+    text-decoration: none;
+    color: var(--color-primary);
+    font-weight: 700;
+    font-size: clamp(1rem, 3vw, 1.1rem);
+    padding: 10px 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--color-secondary);
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    font-family: 'Noto Serif Telugu', serif;
+    white-space: nowrap;
+    flex-grow: 0; /* Important for desktop layout */
+    margin: 5px; /* Added margin for desktop separation */
+    box-shadow: 0 0 6px rgba(106, 27, 154, 0.15);
+}
+.nav-link:hover, .nav-link:focus, .nav-link.active {
+    background-color: #d5c4e7;
+    color: var(--color-text);
+    outline: none;
+    box-shadow: 0 0 14px rgba(106, 27, 154, 0.5);
+}
+.nav-icon {
+    font-size: 1.5rem;
+    color: #8e24aa;
+}
+
+/* --- Main Content Styling --- */
+main {
+    max-width: 900px;
+    margin: 20px auto 40px;
+    padding: 0 10px;
+}
+section {
+    background: var(--color-content-bg);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(230, 175, 45, 0.2); /* Kept orange shadow for content contrast */
+    scroll-margin-top: 80px;
+    transition: box-shadow 0.4s ease;
+}
+h2 {
+    font-family: 'Roboto Slab', serif;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--color-primary); /* Using primary purple */
+    font-weight: 900;
+    font-size: clamp(1.8rem, 6vw, 2.3rem);
+    letter-spacing: 0.05rem;
+}
+h3 {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    font-size: clamp(1.4rem, 4.5vw, 1.8rem);
+}
+p {
+    font-size: clamp(1rem, 3.5vw, 1.3rem);
+    color: var(--color-main-text);
+    line-height: 1.7;
+}
+
+/* Gallery Styles (Kept as is) */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(179, 107, 0, 0.2);
+}
+#video-container {
+    position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;
+    background: #000; border-radius: 10px; box-shadow: 0 5px 15px rgba(179, 107, 0, 0.3);
+}
+#video-container iframe {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+}
+
+/* Utility Buttons (Kept as is) */
+.nav-btn {
+    position: fixed; right: 15px;
+    background-color: #f57c00; color: white; border: none;
+    border-radius: 50%; padding: 12px 16px;
+    font-size: 1.3rem;
+    box-shadow: 0 5px 20px rgba(245, 124, 0, 0.7); cursor: pointer;
+    display: none; z-index: 2000;
+    transition: background-color 0.3s, transform 0.2s;
+}
+#back-to-top { bottom: 70px; }
+#go-to-bottom { bottom: 20px; }
+
+
+/* --- Media Queries --- */
+
+/* Desktop Styles (min-width: 781px) */
+@media (min-width: 781px){
+    .hamburger { display: none; }
+    /* Force flat menu display */
+    #nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        box-shadow: none;
+    }
+}
+
+/* Responsive Adjustments (780px and below - Tablets and Mobile) */
+@media (max-width: 780px){
+    .hamburger { display: flex; }
+    .header-content {
+        /* Ensures the title and hamburger remain spaced out */
+        justify-content: space-between;
+    }
+
+    /* Mobile Menu Dropdown Styles */
+    #nav-menu {
+        display: none; /* Hidden until .active class is applied by JS */
+        flex-direction: column;
+        position: absolute;
+        top: 100%; /* Drops below the header */
+        left: 0;
+        width: 100%;
+        background-color: var(--color-background-light);
+        padding: 15px 20px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 0 0 10px 10px;
+        z-index: 1199;
+    }
+    #nav-menu.active {
+        display: flex;
+        flex-wrap: wrap; /* Allows two columns */
+        justify-content: space-around;
+    }
+    
+    /* Mobile Link Sizing (Two per row for tablets) */
+    .nav-link {
+        width: 48%; 
+        margin: 5px 1%; /* Adjusted margin for better spacing */
+        font-size: 1.1rem;
+        flex-grow: 0;
+    }
+}
+
+/* Extra small screen adjustments (480px and below - Phones) */
+@media (max-width: 480px) {
+    #full-menu-container {
+        padding: 8px 10px;
+    }
+
+    /* Full width links for maximum tap area on small phones */
+    .nav-link {
+        width: 100%;
+        margin: 5px 0;
+        font-size: 1rem;
+    }
+
+    main {
+        padding: 0 15px;
+    }
+    section {
+        padding: 15px;
+    }
+    
+    /* Utility buttons */
+    .nav-btn {
+        right: 10px;
+        padding: 10px 14px;
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Stotram Section Styling --- */
+
+.stotra-section {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f7f9f9; /* Light Gray Background */
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 600px) {
+    .stotra-section {
+        padding: 15px;
+        margin: 20px auto;
+    }
+}
+
+.stotra-heading-container {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #ffcc80; /* Orange Accent */
+    padding-bottom: 15px;
+}
+
+.stotra-heading {
+    font-size: clamp(2rem, 6vw, 2.8rem); /* Fluid Heading Size */
+    margin: 0;
+    color: #8e24aa; /* Dark Purple */
+    font-family: 'Noto Serif Telugu', serif;
+    line-height: 1.2;
+}
+
+.stotra-content-wrapper {
+    background: linear-gradient(135deg, var(--color-background-light), var(--color-secondary));
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #ce93d8;
+}
+@media (max-width: 600px) {
+    .stotra-content-wrapper {
+        padding: 15px;
+    }
+}
+
+.stotra-text-container {
+    font-family: 'Noto Serif Telugu', serif;
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem); /* Fluid Font Size for Text */
+    font-weight: 700;
+    color: #2e004e;
+    line-height: 2.2;
+    text-align: center;
+}
+
+.stotra-verse {
+    margin: 10px 0;
+    padding: 10px 15px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+/* Specific Style for the Phala-sruti (Result verse) */
+.stotra-phala {
+    margin: 20px 0 5px 0;
+    padding: 12px 15px;
+    background: #ffe0b2; /* Light Orange Background */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    color: #795548;
+    border-left: 5px solid #ff9800;
+}
+
+/* Specific Style for the Conclusion/Mantra */
+.stotra-conclusion {
+    margin: 5px 0 0 0;
+    padding: 10px 15px;
+    background: #c8e6c9; /* Light Green Background */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    color: #1b5e20;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+}
+
+/* --- Bhava (Meaning/Commentary) Styling --- */
+
+.stotra-bhava-wrapper {
+    background: #fff8e1; /* Light Yellow Background */
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #ffab40;
+    margin-top: 30px;
+    box-shadow: 0 4px 15px rgba(255, 171, 64, 0.2);
+}
+@media (max-width: 600px) {
+    .stotra-bhava-wrapper {
+        padding: 15px;
+        margin-top: 20px;
+    }
+}
+
+.stotra-bhava-text {
+    font-size: clamp(1.1rem, 3.8vw, 1.35rem); /* Fluid Font Size for Bhava */
+    color: #5d4037;
+    line-height: 2.0;
+    margin: 0;
+    padding: 18px;
+    background: #fff5e9;
+    border-left: 8px solid #ff9800;
+    border-radius: 8px;
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+.bhava-title {
+    font-weight: 900;
+    color: #5d4037;
+    display: block;
+    margin-bottom: 10px;
+    font-size: clamp(1.2rem, 4vw, 1.45rem);
+    border-bottom: 2px dashed #ffab40;
+    padding-bottom: 5px;
+}
+/* Highlight color for bolded words in the meaning */
+.bhava-highlight {
+    color: #795548;
+}
+
+/* --- Main Section (Invitation/Welcome) Styling --- */
+
+.main-section {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 30px; /* Increased base padding */
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    /* Ensure styles from the global `section` are inherited/overridden as needed */
+    scroll-margin-top: 80px; 
+}
+@media (max-width: 600px) {
+    .main-section {
+        padding: 15px;
+    }
+}
+
+.title-block {
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.2;
+    padding: 15px 0;
+}
+
+.auspicious-text {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    color: #b36b00; /* Darker Orange */
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: 0.15rem;
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+.main-heading {
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    margin: 10px 0 5px;
+    color: #9c5c00; /* Medium Brown/Orange */
+    font-family: 'Noto Serif Telugu', serif;
+    font-weight: 800;
+}
+
+.reg-number {
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: #5d4037;
+    margin-top: 5px;
+    font-weight: 500;
+}
+
+/* --- Logo/Image Block Styling --- */
+.logo-block {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 10px 0;
+}
+
+.image-flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(15px, 5vw, 40px);
+}
+
+.om-logo {
+    width: clamp(30px, 6vw, 48px);
+    height: auto;
+}
+
+.yagnavalkya-image {
+    width: clamp(80px, 20vw, 150px);
+    height: auto;
+    border: 3px solid #b36b00;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 15px rgba(179, 107, 0, 0.5);
+}
+
+.mantra-text {
+    font-size: clamp(1.3rem, 4vw, 1.6rem);
+    font-weight: 700;
+    color: #9c5c00;
+    margin-top: 20px;
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+/* --- Secondary Heading/Event Name --- */
+.event-title {
+    text-align: center;
+    color: #b36b00;
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    border-bottom: 2px solid #f57c00;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+    font-family: 'Noto Serif Telugu', serif;
+    padding-left: 10px; padding-right: 10px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* --- Quotation Block --- */
+.quote-block {
+    font-style: italic;
+    font-weight: 600;
+    color: #5c4827;
+    border: 2px dashed #faaf40;
+    padding: 25px;
+    border-radius: 12px;
+    background: #fff8e6;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+    line-height: 1.8;
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+/* --- Section Headers (Green Accent) --- */
+.details-header {
+    color: #00796b; /* Dark Green */
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    border-left: 5px solid #00796b;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    font-family: 'Noto Serif Telugu', serif;
+    font-weight: 700;
+}
+.place-header {
+    color: #b36b00; /* Orange/Brown Accent */
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    border-left: 5px solid #b36b00;
+    padding-left: 15px;
+    margin-bottom: 20px;
+    font-family: 'Noto Serif Telugu', serif;
+    font-weight: 700;
+}
+.header-icon {
+    font-size: 1.6rem;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+/* --- Date/Invitation Details Block (Greenish/Teal Background) --- */
+.invitation-details-block {
+    background: #e0f2ff; /* Lighter Blue/Green to contrast with Orange theme */
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #b2dfdb;
+    margin-bottom: 30px;
+}
+
+.invitation-text {
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+    font-weight: 400;
+    color: #263238;
+    line-height: 1.8;
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+.dear-recipient {
+    font-weight: 500;
+    margin-bottom: 15px;
+    margin-top: 0;
+    font-size: 1.3rem;
+}
+
+.date-highlight {
+    font-weight: 700;
+    display: block;
+    color: #004d40; /* Darker Green for high contrast */
+    margin-bottom: 10px;
+    font-size: 1.35rem;
+}
+
+.date-text-bold {
+    color: #9c5c00;
+    font-weight: 900;
+}
+
+/* --- Location Block (Yellow Background) --- */
+.location-block {
+    background: #ffecb3;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.location-text {
+    font-weight: 900;
+    font-size: clamp(1.4rem, 4.5vw, 1.8rem);
+    color: #f57c00;
+    margin: 0;
+    line-height: 1.6;
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+/* --- Program Details Section Styling --- */
+
+.program-section {
+    background: #fff7e5; /* Light Beige/Orange background */
+    padding: 30px 20px 40px;
+    margin: 20px auto 45px;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(230, 175, 45, 0.25);
+    scroll-margin-top: 110px;
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+.program-header {
+    font-family: 'Noto Serif Telugu', serif;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #9c5c00; /* Dark Brown/Orange */
+    font-weight: 900;
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    letter-spacing: 0.05rem;
+    text-align: center;
+    border-bottom: 3px solid #ffcc80;
+    padding-bottom: 10px;
+}
+
+.program-icon {
+    font-size: 1.8em;
+    vertical-align: sub;
+    margin-right: 8px;
+}
+
+.program-date {
+    font-weight: 700;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    color: #b36b00;
+    border-bottom: 2px solid #faaf40;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+/* List Item Styles */
+.program-list {
+    list-style: none;
+    padding: 0;
+}
+
+.program-item {
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.program-item-text {
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+    margin: 0;
+    line-height: 1.7;
+}
+
+.program-item-title {
+    font-weight: 900;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Style for Archanai (Orange Theme) */
+.archanai-item {
+    background: #fdf6e4;
+    border-left: 5px solid #f57c00; /* Darker Orange Bar */
+}
+.archanai-item .program-item-title {
+    color: #b36b00; /* Dark Brown/Orange */
+}
+.archanai-item .program-item-text {
+    color: #5c4827; /* Main Content Text */
+}
+
+/* Style for Prasnagam (Teal Theme) */
+.prasangam-item {
+    background: #e0f2f1; /* Light Aqua/Teal */
+    border-left: 5px solid #00796b; /* Dark Teal Bar */
+}
+.prasangam-item .program-item-title {
+    color: #00796b; /* Dark Teal */
+}
+.prasangam-item .program-item-text {
+    color: #004d40; /* Darker Green Text */
+}
+.prasangam-item .text-highlight {
+    color: #9c5c00; /* Orange highlight for topic */
+}
+
+/* --- Gifts/Souvenir Block (Blue/Teal) --- */
+.gift-block {
+    background: #e0f7fa;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px dashed #00796b;
+    margin-top: 35px;
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+}
+
+.gift-header {
+    font-weight: 700;
+    color: #004d40;
+    margin: 0 0 10px 0;
+    font-size: 1.4rem;
+}
+
+.gift-details-text {
+    color: #5c4827;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.gift-highlight {
+    color: #9c5c00;
+    font-weight: 700;
+}
+
+/* --- Next Year Date Block (Orange/Yellow) --- */
+.next-year-block {
+    background: #fff3e0;
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px dashed #f57c00;
+    margin-top: 20px;
+    text-align: center;
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+}
+
+.next-year-header {
+    font-weight: 700;
+    color: #b36b00;
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.next-year-date {
+    color: #5c4827;
+    margin: 5px 0 0;
+    font-weight: 500;
+}/* --- Invitation Download Section Styling --- */
+
+.invitation-section {
+    background: #fff7e5;
+    padding: 30px 25px 40px;
+    margin: 20px auto 45px;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(230, 175, 45, 0.25);
+    scroll-margin-top: 110px;
+    font-family: 'Noto Serif Telugu', serif;
+}
+@media (max-width: 600px) {
+    .invitation-section {
+        padding: 20px 15px 30px;
+    }
+}
+
+.invitation-header {
+    font-family: 'Noto Serif Telugu', serif;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #9c5c00; /* Dark Brown/Orange */
+    font-weight: 900;
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    letter-spacing: 0.05rem;
+    text-align: center;
+    border-bottom: 3px solid #f57c00; /* Dark Orange Border */
+    padding-bottom: 10px;
+}
+
+.invitation-icon {
+    font-size: 1.8em;
+    vertical-align: sub;
+    margin-right: 8px;
+}
+
+.invitation-description {
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+    color: #5c4827;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+/* Download Button Styling */
+.download-btn {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #ff9800; /* Bright Orange */
+    color: white;
+    border-radius: 50px;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-weight: bold;
+    box-shadow: 0 6px 15px rgba(255, 152, 0, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.download-btn:hover,
+.download-btn:focus {
+    background-color: #f57c00; /* Darker Orange on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.7);
+    outline: none;
+}
+
+.download-icon {
+    margin-right: 10px;
+    font-size: 1.8rem;
+}
+
+/* --- Gallery and Media Section Styling --- */
+
+.media-section {
+    background: #fff7e5;
+    padding: 30px 20px 40px;
+    margin: 20px auto 45px;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(230, 175, 45, 0.25);
+    scroll-margin-top: 110px;
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+.media-header {
+    font-family: 'Noto Serif Telugu', serif;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #9c5c00;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+    letter-spacing: 0.05rem;
+    text-align: center;
+    border-bottom: 3px solid #f57c00;
+    padding-bottom: 10px;
+}
+
+.media-header-icon {
+    font-size: 1.8em;
+    vertical-align: sub;
+    margin-right: 8px;
+}
+
+.media-description {
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+    color: #5c4827;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+/* --- Sub-Headers for Video/Images --- */
+.media-subheader {
+    color: #9c5c00;
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    border-bottom: 1px dashed #faaf40;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    font-weight: 700;
+}
+
+.subheader-icon {
+    font-size: 1.6rem;
+    vertical-align: middle;
+    margin-right: 5px;
+    color: #b36b00;
+}
+
+/* --- Video Container (16:9 Aspect Ratio) --- */
+.video-responsive {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* Inherits from the global #video-container if present, but this is a solid fallback */
+}
+.video-responsive iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* --- Image Gallery Grid --- */
+.image-gallery {
+    display: grid;
+    /* Responsive grid: min 150px wide, max 1fr */
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+    gap: 15px;
+    margin-top: 20px;
+    padding: 5px 0;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.gallery-image:hover,
+.gallery-image:focus {
+    transform: scale(1.05); /* Zoom effect */
+    box-shadow: 0 6px 15px rgba(179, 107, 0, 0.5); /* Stronger shadow */
+    outline: none; /* Remove default focus outline */
+}/* --- Members/Contact Section Styling --- */
+
+.members-section {
+    background: #fff7e5;
+    padding: 30px 20px 40px;
+    margin: 20px auto 45px;
+    max-width: 800px;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(230, 175, 45, 0.25);
+    scroll-margin-top: 110px;
+    font-family: 'Noto Serif Telugu', serif;
+}
+
+.committee-header {
+    color: #9c5c00;
+    font-size: clamp(1.8rem, 5vw, 2.2rem);
+    margin-bottom: 25px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 3px solid #ffcc80;
+    padding-bottom: 10px;
+    font-weight: 900;
+}
+
+.committee-header-icon {
+    margin-right: 10px;
+    color: #f57c00;
+    font-size: 1.2em;
+}
+
+/* Committee Grid */
+.committee-grid {
+    display: grid;
+    /* Responsive Grid: 2 columns on desktop, 1 on narrow screens */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 35px;
+    padding: 0 10px;
+}
+
+.member-card {
+    background: #fff8e6;
+    border: 1px solid #ffcc80;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.member-title {
+    font-weight: 900;
+    color: #b36b00;
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    border-bottom: 1px dashed #ffb74d;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.member-icon {
+    color: #f57c00;
+    margin-right: 8px;
+}
+
+.member-name {
+    margin: 0;
+    color: #5c4827;
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+/* Contact Details */
+
+.contact-hr {
+    border: 0;
+    height: 1px;
+    background-color: #ffcc80;
+    margin: 30px 0;
+}
+
+.contact-subheader {
+    color: #9c5c00;
+    font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+}
+
+.contact-subheader-icon {
+    margin-right: 10px;
+    color: #f57c00;
+    font-size: 1.2em;
+}
+
+.contact-info-block {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid #ffcc80;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.person-name {
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: #5c4827;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.address-icon {
+    color: #b36b00;
+    margin-right: 5px;
+}
+
+.address-details {
+    line-height: 1.8;
+    padding-left: 25px;
+    color: #5c4827;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.phone-wrapper {
+    text-align: center;
+    background: #e8f5e9; /* Light Green for phone number emphasis */
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.phone-number {
+    font-weight: 900;
+    color: #2e7d32;
+    margin: 0;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* --- Fixed Navigation Buttons --- */
+
+.nav-btn {
+    position: fixed;
+    /* Use 'bottom' and 'right' to position them in the corner */
+    bottom: 20px;
+    right: 20px;
+    
+    /* Appearance */
+    background-color: #ff9800; /* Bright Orange */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s, opacity 0.3s;
+    z-index: 1000; /* Ensure button is above all other content */
+    
+    /* Center the icon */
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.nav-btn:hover {
+    background-color: #f57c00; /* Darker Orange on hover */
+    transform: scale(1.05);
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+}
+
+/* Positioning the Go To Bottom button slightly higher/lower */
+#back-to-top {
+    /* Initially hidden by JS until user scrolls */
+    display: none; 
+}
+
+#go-to-bottom {
+    /* Positioned just above the back-to-top button */
+    bottom: 80px; 
+    right: 20px; 
+}
+
+/* Optional: Adjust for smaller screens if needed */
+@media (max-width: 600px) {
+    .nav-btn {
+        width: 45px;
+        height: 45px;
+    }
+    #go-to-bottom {
+        bottom: 70px;
+    }
+}
     </style>
 </head>
 <body>
 
 <div id="full-menu-container" class="combined-header">
     <div class="header-content">
-        <img src="Image 1.jpg" alt="ఓం లోగో" /> 
-        <h1 style="font-family: 'Roboto Slab', serif; font-size: 2.2rem; font-weight: 900; margin: 0; color: #4b3b29;">
+        
+        <h1 class="site-title">
             శ్రీ యాజ్ఞవల్క్య జయంత్యుత్సవ సంఘము పిఠాపురం
         </h1>
+        
         <div class="hamburger" id="hamburger" aria-label="నావిగేషన్ మెనూ టోగుల్" aria-expanded="false" tabindex="0" role="button">
             <span></span>
             <span></span>
             <span></span>
         </div>
     </div>
-  <nav id="nav-menu" aria-label="ముఖ్య నావిగేషన్">
-    <a href="#main"><span class="material-icons">home</span>ఆహ్వానం</a>
-    <a href="#program-details"><span class="material-icons">event</span> వివరములు</a>
-    <a href="#invitations"><span class="material-icons">file_download</span>ఆహ్వానం డౌన్లోడ్</a>
-    <a href="#gallery"><span class="material-icons">photo_library</span>గ్యాలరీ & వీడియో</a>
-    
-    <a href="#Members"><span class="material-icons">group</span>కార్యవర్గం</a> 
-</nav>
+
+    <nav id="nav-menu" aria-label="ముఖ్య నావిగేషన్">
+        
+        <a href="#yagnavalkya-stotra" class="nav-link">
+            <span class="material-icons nav-icon" style="margin-right: 8px; color: #8e24aa;">
+                self_improvement
+            </span>
+            ప్రార్థన
+        </a>
+        
+        <a href="#main" class="nav-link">
+            <span class="material-icons nav-icon" style="margin-right: 8px;">
+                home
+            </span>
+            ఆహ్వానం
+        </a>
+        
+        <a href="#program-details" class="nav-link">
+            <span class="material-icons nav-icon" style="margin-right: 8px;">
+                event
+            </span>
+            వివరములు
+        </a>
+        
+        <a href="#invitations" class="nav-link">
+            <span class="material-icons nav-icon" style="margin-right: 8px;">
+                file_download
+            </span>
+            ఆహ్వానం డౌన్లోడ్
+        </a>
+        
+        <a href="#gallery" class="nav-link">
+            <span class="material-icons nav-icon" style="margin-right: 8px;">
+                photo_library
+            </span>
+            గ్యాలరీ &amp; వీడియో
+        </a> 
+        
+        <a href="#Members" class="nav-link">
+            <span class="material-icons nav-icon" style="margin-right: 8px;">
+                group
+            </span>
+            కార్యవర్గం
+        </a> 
+    </nav>
 </div>
 <main>
   
-
-   <div id="slokas-section" style="background: #ffffff; padding: 30px; border-radius: 15px; border: 3px double var(--secondary-color); margin-bottom: 45px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+<section id="yagnavalkya-stotra" class="stotra-section">
     
-    <h3 style="color: var(--secondary-color); font-size: 1.8rem; margin-bottom: 25px; text-align: center; display: flex; align-items: center; justify-content: center;">
-        <i class="fas fa-hand-holding-heart" style="margin-right: 10px; color: var(--primary-color);"></i>
-        <b>శ్రీ యాజ్ఞవల్క్య ద్వాదశ నామ స్తుతి</b> 
-    </h3>
+    <div class="stotra-heading-container">
+        <h3 class="stotra-heading">
+            <b>శ్రీ యాజ్ఞవల్క్య ద్వాదశ స్తోత్రం</b> 
+        </h3>
+    </div>
 
-    <div style="font-family: 'Roboto Slab', serif; font-size: 1.45rem; font-weight: 700; color: #5c4827; line-height: 2.2; text-align: center; margin-bottom: 25px; padding: 15px 10px; background: #fff8e6; border-radius: 8px;">
-        <p style="margin: 0; padding: 0;">ఓం<br>
-        <span style="color: var(--secondary-color);">వందేహం మంగళాత్మానం భాస్వంతం వేద విగ్రహమ్ |</span><br>
-        యాజ్ఞవల్క్యం మునిశ్రేష్ఠం జిష్ణుం హరిహర ప్రభుమ్ ||</p> 
+    <div class="stotra-content-wrapper">
+        <div class="stotra-text-container">
+            
+            <p class="stotra-verse">
+                <span style="color: #6a1b9a;">ఓం</span> వందేహం మంగళాత్మానం భాస్వంతం వేద విగ్రహమ్ | యాజ్ఞవల్క్యం మునిశ్రేష్ఠం జిష్ణుం హరిహర ప్రభుమ్ ||
+            </p> 
+            
+            <p class="stotra-verse">
+                జితేంద్రియం జితక్రోధం సదాధ్యాన పరాయణం | ఆనందనిలయం వందే యోగానంద మునీశ్వరమ్ ||
+            </p>
+
+            <p class="stotra-phala">
+                ఏవం ద్వాదశ నామాని త్రిసంధ్యా యః పఠేన్నరః | యోగీశ్వర ప్రసాదేన విద్యావాన్ ధనవాన్ భవేడ్ ||
+            </p>
+
+            <p class="stotra-conclusion">
+                ఓం శ్రీ యాజ్ఞవల్క్య గురుభ్యో నమః | కణ్వకాత్యాయనాది మహర్షిభ్యో నమః |
+            </p>
+        </div> 
+    </div> 
+    
+    <div class="stotra-bhava-wrapper">
         
-        <p style="margin: 15px 0 0 0; padding: 0;">
-        జితేంద్రియం జితక్రోధం సదాధ్యాన పరాయణం |<br>
-        ఆనందనిలయం వందే యోగానంద మునీశ్వరమ్ ||</p>
+        <div class="stotra-bhava-content">
+            <p class="stotra-bhava-text">
+                <span class="bhava-title">భావం :</span>
+                
+                యాజ్ఞవల్క్య మహర్షికి నేను నమస్కరిస్తున్నాను. ఆయన <b class="bhava-highlight">మంగళకరుడు</b>, <b class="bhava-highlight">ప్రకాశవంతమైనవాడు</b>, <b class="bhava-highlight">వేదాల స్వరూపుడు</b>, మునులలో <b class="bhava-highlight">శ్రేష్ఠుడు</b>, <b class="bhava-highlight">విజయాన్ని పొందినవాడు</b> మరియు <b class="bhava-highlight">హరిహరులకు ప్రభువు</b>. ఆయన <b class="bhava-highlight">ఇంద్రియాలను</b>, <b class="bhava-highlight">కోపాన్ని జయించినవాడు</b>, ఎల్లప్పుడూ <b class="bhava-highlight">ధ్యానంలో ఉండేవాడు</b>, మరియు <b class="bhava-highlight">ఆనందానికి నిలయమైనవాడు</b> (యోగనంద మునీశ్వరుడు). 
+                <br><br>
+                ఈ స్తోత్రంలో ఉన్న <b class="bhava-highlight">పన్నెండు నామాలను</b> రోజుకు <b class="bhava-highlight">మూడుసార్లు</b> (త్రిసంధ్యా) పఠించినవారు, ఆ యోగీశ్వరుని అనుగ్రహం వలన తప్పకుండా <b class="bhava-highlight">విద్యావంతులు</b> మరియు <b class="bhava-highlight">ధనవంతులు</b> అవుతారు.
+            </p>
+        </div>
+
     </div>
     
-    <div style="background: #e0f2f1; padding: 15px; border-radius: 10px; border-left: 5px solid #00796b; margin-bottom: 30px;">
-        <p style="font-size: 1.3rem; font-weight: 700; color: #004d40; margin: 0; text-align: center; line-height: 1.8;">
-            <i class="fas fa-asterisk" style="margin-right: 5px; color: #00796b;"></i> ఏవం ద్వాదశ నామాని త్రిసంధ్యా యః పఠేన్నరః |<br>
-            యోగీశ్వర ప్రసాదేన <b style="color: #d84315;">విద్యావాన్ ధనవాన్ భవేడ్</b> ||
-        </p>
-        <p style="font-size: 1.35rem; font-weight: 700; color: var(--secondary-color); text-align: center; margin-top: 15px;">
-            ఓం శ్రీ యాజ్ఞవల్క్య గురుభ్యో నమః | కణ్వకాత్యాయనాది మహర్షిభ్యో నమః |   
-        </p>
-    </div>
+</section>
 
-    <h4 style="color: #00796b; font-size: 1.5rem; margin-bottom: 15px; border-bottom: 2px dashed #00796b; padding-bottom: 5px;">
-        <i class="fas fa-comments" style="margin-right: 8px; color: #00796b;"></i> భావం:
-    </h4>
-    <div style="background: #fcf3e8; padding: 20px; border-radius: 10px; border: 1px solid #f0e0c0;">
-        <p style="font-size: 1.25rem; color: #5c4827; line-height: 1.7;">
-            <b style="color: var(--primary-color);">యాజ్ఞవల్క్య మహర్షికి నమస్కారములు:</b> మంగళకరుడు, ప్రకాశవంతమైనవాడు, వేదాల స్వరూపుడు, మునులలో శ్రేష్ఠుడు, విజయాన్ని పొందినవాడు, హరిహరులకు ప్రభువు, ఇంద్రియాలను, కోపాన్ని జయించినవాడు, ఎల్లప్పుడూ ధ్యానంలో ఉండేవాడు, ఆనందానికి నిలయమైనవాడు అయిన యాజ్ఞవల్క్య మహర్షికి నేను నమస్కరిస్తున్నాను.
+<section id="main" tabindex="0" class="main-section">
+
+    <div class="title-block">
+        <p class="auspicious-text">
+            శ్రీరస్తు      శుభమస్తు             అవిఘ్నమస్తు
         </p>
-        <p style="font-size: 1.25rem; color: #5c4827; line-height: 1.7; margin-top: 15px;">
-            <b style="color: var(--primary-color);">ఫలితం:</b> ఈ విధంగా ఆయన పన్నెండు నామాలను రోజుకు మూడుసార్లు పఠించినవారు, ఆ యోగీశ్వరుని అనుగ్రహం వలన **విద్యావంతులు** మరియు **ధనవంతులు** అవుతారు.
-        </p>
-    </div>
-</div>
-  <section id="main" tabindex="0">
-    <div style="text-align: center; margin-bottom: 40px; line-height: 1.2; padding: 20px;">
-        <p style="font-size: 1.6rem; color: #b36b00; font-weight: 700; margin: 0; letter-spacing: 0.1rem;">
-            శ్రీరస్తు      శుభమస్తు             అవిఘ్నమస్తు
-        </p>
-        <h2 style="font-size: 2.6rem; margin: 10px 0 5px; color: #9c5c00; font-family: 'Roboto Slab', serif;">
+        <h2 class="main-heading">
             శ్రీ యాజ్ఞవల్క్య జయంత్యుత్సవ సంఘము - పిఠాపురం
         </h2>
-        <p style="font-size: 1.3rem; color: #4b3b29; margin-top: 0;">తూగో॥జిల్లా(ఆం.ప్ర.) (రి.నెం.3/57)</p>
+        <p class="reg-number">
+            తూగో॥జిల్లా(ఆం.ప్ర.) (రి.నెం.3/57)
+        </p>
     </div>
 
-    <div style="text-align: center; margin-bottom: 30px;">
-        <div style="display: flex; justify-content: center; align-items: center; gap: 30px;">
-            <img src="32px-Om_symbol.svg.png" alt="ఓం లోగో" width="48" height="48" /> 
-            <img src="Image 3.jpg" alt="శ్రీ యాజ్ఞవల్క్య ఋషి చిత్రం" style="width: 120px; height: auto; border: 2px solid #b36b00; border-radius: 5px;"/>
-            <img src="32px-Om_symbol.svg.png" alt="ఓం లోగో" width="48" height="48" />
+    <div class="logo-block">
+        <div class="image-flex-container">
+            <img src="32px-Om_symbol.svg.png" alt="ఓం లోగో" class="om-logo" />
+            <img src="Image 3.jpg" alt="శ్రీ యాజ్ఞవల్క్య ఋషి చిత్రం" class="yagnavalkya-image" />
+            <img src="32px-Om_symbol.svg.png" alt="ఓం లోగో" class="om-logo" />
         </div>
-        <p style="font-size: 1.5rem; font-weight: 700; color: #9c5c00; margin-top: 20px;">
+        <p class="mantra-text">
             ఓం కణ్య గురువేనమ:
         </p>
     </div>
 
-    <h3 style="text-align: center; color: #b36b00; font-size: 2rem; border-bottom: 2px solid #f57c00; padding-bottom: 15px; margin-bottom: 40px;"> 
-       
+    <h3 class="event-title">
         శ్రీ మైత్రేయీ కాత్యాయనీ సమేత శ్రీ యాజ్ఞవల్క్య ఋషి సార్వభౌమ జయంత్యుత్సవము
     </h3>
 
-    <div style="font-style: italic; font-weight: 700; color: #5c4827; border: 2px dashed #faaf40; padding: 20px; border-radius: 12px; background: #fff8e6; text-align: center; margin-bottom: 40px;">
-        ఓం పూర్ణమధ: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే<br>
-        పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే
+    <div class="quote-block">
+        **ఓం పూర్ణమద: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే**<br>
+        **పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే**
     </div>
 
-    <h3 style="color: #00796b; font-size: 1.8rem; border-left: 5px solid #00796b; padding-left: 10px; margin-bottom: 25px;">
-        <span class="material-icons" style="font-size: 1.6rem; vertical-align: middle;">info</span> జయంతి ఉత్సవ వివరాలు:
+    <h3 class="details-header">
+        <span class="material-icons header-icon">info</span> జయంతి ఉత్సవ వివరాలు:
     </h3>
-    
-    <div style="background: #e0f2f1; padding: 25px; border-radius: 15px; border: 1px solid #b2dfdb; margin-bottom: 30px;">
-        <p style="font-size: 1.35rem; font-weight: 400; color: #263238; line-height: 1.7;">
-            
-            <p>అయ్యా/అమ్మా,____________</p>
-            <span style="font-weight: 700;">
-              స్వస్తిశ్రీ చాంద్రమాన శ్రీ క్రోధి నామ సం॥ర కార్తీక శుద్ధ దశమీ శుక్రవారం అనగా <b style="color: #ff5722;">ది.31-10-2025</b>
-            
-  శ్రీ మానిత్యాది బిరుదాంకితులు పరవాది భయంకరభట్ట వెంకట నరశింహాచార్యులు వారిచే శ్రీ వెంకటేశ్వరస్వామి వారి దేవాలయంలో ప్రతిష్టించబడిన 
- <b style="color: #ff5722;">శ్రీ యాజ్ఞవల్క్య మహర్షి </b>వారి <b style="color: #ff5722;">94వ</b> జయంతి పీఠికాపురమునందు  శ్రీ యాజ్ఞవల్క్య జయంత్యుత్సవ సంఘము వారిచే జరుపబడును
 
+    <div class="invitation-details-block">
+        <p class="invitation-text">
+            <p class="dear-recipient">అయ్యా/అమ్మా,____________</p>
+
+            <span class="date-highlight">
+                స్వస్తిశ్రీ చాంద్రమాన శ్రీ విశ్వావసు నామ సం॥ర కార్తీక శుద్ధ దశమీ శుక్రవారం అనగా <b class="date-text-bold">ది.31-10-2025</b>
+            </span>
+
+            <br>
+            శ్రీ మానిత్యాది బిరుదాంకితులు పరవాది భయంకరభట్ట వెంకట నరశింహాచార్యులు వారిచే శ్రీ వెంకటేశ్వరస్వామి వారి దేవాలయంలో ప్రతిష్టించబడిన
+            <b class="date-text-bold">శ్రీ యాజ్ఞవల్క్య మహర్షి </b>వారి <b class="date-text-bold">94వ</b> జయంతి పీఠికాపురమునందు  శ్రీ యాజ్ఞవల్క్య జయంత్యుత్సవ సంఘము వారిచే జరుపబడును.
         </p>
     </div>
-    </div>
-    <h3 style="color: #b36b00; font-size: 1.8rem; border-left: 5px solid #b36b00; padding-left: 10px; margin-bottom: 25px;">
-        <span class="material-icons" style="font-size: 1.6rem; vertical-align: middle;">place</span> జయంతి జరుగు ప్రదేశము:
+
+    <h3 class="place-header">
+        <span class="material-icons header-icon">place</span> జయంతి జరుగు ప్రదేశము:
     </h3>
-    <div style="background: #ffecb3; padding: 25px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: center;">
-        <p style="font-weight: 900; font-size: 1.8rem; color: #f57c00; margin: 0;">
-            శ్రీ వేంకటేశ్వరస్వామివారి దేవాలయం, టి.టి.డి. కళ్యాణం మండపం ప్రక్కన, పిఠాపురం- 533 450 , ఆంధ్రప్రదేశ్.
+    <div class="location-block">
+        <p class="location-text">
+            **శ్రీ వేంకటేశ్వరస్వామివారి దేవాలయం,**<br> టి.టి.డి. కళ్యాణం మండపం ప్రక్కన,<br> **పిఠాపురం- 533 450 , ఆంధ్రప్రదేశ్.**
         </p>
     </div>
+
+</section>
+
+
+<section id="program-details" tabindex="0" class="program-section">
     
-  </section>
-  <section id="program-details" tabindex="0" style="background: #fff7e5; padding: 30px 30px 40px; margin-bottom: 45px; border-radius: 20px; box-shadow: 0 8px 15px rgba(230, 175, 45, 0.25); scroll-margin-top: 110px;">
-    <h2 style="font-family: 'Roboto Slab', serif; margin-top: 0; margin-bottom: 20px; color: #b36b00; font-weight: 900; font-size: 2.3rem; letter-spacing: 0.06rem;">
-      <span class="material-icons" style="font-size: 2.2rem; vertical-align: middle;">event_note</span> కార్యక్రమ వివరములు:
+    <h2 class="program-header">
+        <span class="material-icons program-icon">event_note</span> కార్యక్రమ వివరములు:
     </h2>
-    <p style="font-weight: 700; font-size: 1.4rem; color: #d84315; border-bottom: 2px dashed #faaf40; padding-bottom: 10px;">
-        ది.31-10-2025 తేది శుక్రవారం ఉదయం 9 గంటల నుండి
+    
+    <p class="program-date">
+        **ది.31-10-2025 తేది శుక్రవారం ఉదయం 9 గంటల నుండి**
     </p>
 
-    <ul style="list-style: none; padding: 0;">
-        <li style="background: #f6e8c3; margin-bottom: 15px; padding: 15px; border-radius: 10px; border-left: 5px solid #f57c00;">
-            <p style="font-size: 1.3rem; margin: 0; color: #5c4827;">
-                <span style="font-weight: 700; color: #b36b00;">సహస్రనామార్చన:</span> స్వర్గీయ శ్రీమాన్ పెరియాల హనుమంతా చార్యులువారి కుమారులు శ్రీరామకృష్ణమాచార్యులువారిచే స్వామివారికి సహస్రనామార్చన. తదుపరి ప్రసాద వినియోగం జరుగును.
+    <ul class="program-list">
+        
+        <li class="program-item archanai-item">
+            <p class="program-item-text">
+                <span class="program-item-title">సహస్రనామార్చన:</span> 
+                స్వర్గీయ శ్రీమాన్ పెరియాల హనుమంతా చార్యులువారి కుమారులు శ్రీరామకృష్ణమాచార్యులువారిచే స్వామివారికి సహస్రనామార్చన. తదుపరి ప్రసాద వినియోగం జరుగును.
             </p>
         </li>
-        <li style="background: #e0f2f1; margin-bottom: 15px; padding: 15px; border-radius: 10px; border-left: 5px solid #00796b;">
-            <p style="font-size: 1.3rem; margin: 0; color: #004d40;">
-                <span style="font-weight: 700; color: #d84315;">ముఖ్య ప్రసంగం:</span> కార్తీక శుద్ధ దశమి శుక్రవారం శ్రీ యాజ్ఞవల్క్య జయంతి సందర్భంగా కాకినాడ వా॥లు శ్రీ కూచి శ్రీహరిమన్నారు గారుఈశావాస్య మిదం సర్వమ్**" అను అంశంపై ప్రసంగించెదరు.
+        
+        <li class="program-item prasangam-item">
+            <p class="program-item-text">
+                <span class="program-item-title">ముఖ్య ప్రసంగం:</span> 
+                కార్తీక శుద్ధ దశమి శుక్రవారం శ్రీ యాజ్ఞవల్క్య జయంతి సందర్భంగా కాకినాడ వా॥లు శ్రీ కూచి శ్రీహరిమన్నారు గారు <b class="text-highlight">ఈశావాస్య మిదం సర్వమ్</b> అను అంశంపై ప్రసంగించెదరు.
             </p>
         </li>
     </ul>
     
-    <div style="background: #e0f7fa; padding: 15px; border-radius: 10px; border: 1px dashed #00796b; margin-top: 30px;">
-        <p style="font-weight: 700; color: #004d40; margin: 0 0 10px 0;">
-            <span class="material-icons" style="font-size: 1.4rem; vertical-align: middle;">card_giftcard</span> ప్రతి కుటుంబానికి కానుకలు:
+    <div class="gift-block">
+        <p class="gift-header">
+            <span class="material-icons program-icon">card_giftcard</span> ప్రతి కుటుంబానికి కానుకలు:
         </p>
-        <p style="color: #5c4827; margin: 0;">
+        <p class="gift-details-text">
             ఈ సంవత్సరం జయంతికి వచ్చిన ప్రతీ కుటుంబానికి కానుకగా 
-            శ్రీ సూర్యకవచం ,
-            శ్రీ యాజ్ఞవల్క్య మహర్షి వారి తామ్ర డాలరు ఇవ్వబడును.
+            <b class="gift-highlight">శ్రీ సూర్యకవచం</b> మరియు
+            <b class="gift-highlight">శ్రీ యాజ్ఞవల్క్య మహర్షి వారి తామ్ర డాలరు</b> ఇవ్వబడును.
         </p>
     </div>
     
-    <div style="background: #fff3e0; padding: 15px; border-radius: 10px; border: 1px dashed #f57c00; margin-top: 20px; text-align: center;">
-        <p style="font-weight: 700; color: #b36b00; margin: 0;">
-            <span class="material-icons" style="font-size: 1.4rem; vertical-align: middle;">next_plan</span> వచ్చే సంవత్సరం జయంతి తేదీ:
+    <div class="next-year-block">
+        <p class="next-year-header">
+            <span class="material-icons program-icon">next_plan</span> వచ్చే సంవత్సరం జయంతి తేదీ:
         </p>
-        <p style="color: #5c4827; margin: 5px 0 0;">
-           ది.19-11-2026 గురువారం నాడు నిర్వహించబడును.
+        <p class="next-year-date">
+            **ది.19-11-2026 గురువారం** నాడు నిర్వహించబడును.
         </p>
     </div>
-  </section>
+</section>
 
-  <section id="invitations" tabindex="0" style="background: #fff7e5; padding: 30px 30px 40px; margin-bottom: 45px; border-radius: 20px; box-shadow: 0 8px 15px rgba(230, 175, 45, 0.25); scroll-margin-top: 110px;">
+<section id="invitations" tabindex="0" class="invitation-section">
     
-    <h2 style="font-family: 'Roboto Slab', serif; margin-top: 0; margin-bottom: 20px; color: #b36b00; font-weight: 900; font-size: 2.3rem; letter-spacing: 0.06rem;">
-      <span class="material-icons" style="font-size: 2.2rem; vertical-align: middle;">file_download</span> ఆహ్వాన పత్రం 
+    <h2 class="invitation-header">
+        <span class="material-icons invitation-icon">file_download</span> ఆహ్వాన పత్రం
     </h2>
     
-    <p style="font-size: 1.3rem; color: #5c4827;">
-       శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం నుండి పంపబడుతున్న ఈ పవిత్ర ఆహ్వాన పత్రాన్ని (PDF) డౌన్‌లోడ్ చేసుకోండి. ఈ శుభకార్యానికి మీ బంధువులు, స్నేహితులను ఆహ్వానించండి.
+    <p class="invitation-description">
+        శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం నుండి పంపబడుతున్న ఈ పవిత్ర ఆహ్వాన పత్రాన్ని (PDF) **డౌన్‌లోడ్ చేసుకోండి**. ఈ శుభకార్యానికి మీ బంధువులు, స్నేహితులను సంతోషంగా ఆహ్వానించండి.
     </p>
     
-    <a href="శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం.pdf" download class="btn">
-        <span class="material-icons">file_download</span> ఆహ్వానం డౌన్‌లోడ్ (PDF)
-    </a>
+    <div style="text-align: center;">
+        <a href="శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం.pdf" 
+           download 
+           class="download-btn">
+            <span class="material-icons download-icon">file_download</span> 
+            ఆహ్వానం డౌన్‌లోడ్ (PDF)
+        </a>
+    </div>
     
-  </section>
+</section>
 
-  
-
-  <section id="gallery" tabindex="0" style="
-    background: #fff7e5; 
-    padding: 30px 30px 40px;
-    margin-bottom: 45px; 
-    border-radius: 20px;
-    box-shadow: 0 8px 15px rgba(230, 175, 45, 0.25);
-    scroll-margin-top: 110px;
-  ">
-    <h2 style="
-        font-family: 'Roboto Slab', serif; 
-        margin-top: 0; 
-        margin-bottom: 20px;
-        color: #b36b00; 
-        font-weight: 900; 
-        font-size: 2.3rem; 
-        letter-spacing: 0.06rem;
-    ">
-        <span class="material-icons" style="font-size: 2.2rem; vertical-align: middle;">collections</span> వీడియో  & చిత్రాలు
+<section id="gallery" tabindex="0" class="media-section">
+    
+    <h2 class="media-header">
+        <span class="material-icons media-header-icon">collections</span> వీడియో & చిత్రాలు
     </h2>
     
-    <p style="font-size: 1.3rem; color: #5c4827;">
-        మన పవిత్ర ఉత్సవాల దివ్య క్షణాలు మరియు జ్ఞాపకాలను ఈ గ్యాలరీలో వీక్షించండి.
+    <p class="media-description">
+        మన పవిత్ర ఉత్సవాల దివ్య క్షణాలు మరియు జ్ఞాపకాలను ఈ గ్యాలరీలో వీక్షించండి*.
     </p>
 
-    <h3 style="color: #9c5c00; font-size: 1.8rem; border-bottom: 1px dashed #faaf40; padding-bottom: 5px; margin-top: 30px;">
-        <span class="material-icons" style="font-size: 1.6rem; vertical-align: middle;">videocam</span>  వీడియో:
+    <h3 class="media-subheader">
+        <span class="material-icons subheader-icon">videocam</span> వీడియో:
     </h3>
-    <div id="video-container">
+    
+    <div id="video-container" class="video-responsive">
         <iframe 
             src="TTD Video.mp4" 
             title="ఈవెంట్ ముఖ్యాంశాలు" 
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen 
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;"
         ></iframe>
     </div>
 
-    <h3 style="color: #9c5c00; font-size: 1.8rem; border-bottom: 1px dashed #faaf40; padding-bottom: 5px; margin-top: 40px;">
-        <span class="material-icons" style="font-size: 1.6rem; vertical-align: middle;">image</span> చిత్రాలు:
+    <h3 class="media-subheader">
+        <span class="material-icons subheader-icon">image</span> చిత్రాలు:
     </h3>
-    <div class="gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ">
-        <img src="Image 1.jpg" alt="ఆధ్యాత్మిక జపం" tabindex="0" />
-        <img src="Image 2.jpg" alt="ఆలయ అలంకరణ" tabindex="0" />
-        <img src="Image 3.jpg" alt="పూజ కార్యక్రమం" tabindex="0" />
+    
+    <div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ">
+        
+        <img src="Image 1.jpg" alt="ఆధ్యాత్మిక జపం" tabindex="0" class="gallery-image" />
+            
+        <img src="Image 2.jpg" alt="ఆలయ అలంకరణ" tabindex="0" class="gallery-image" />
+            
+        <img src="Image 3.jpg" alt="పూజ కార్యక్రమం" tabindex="0" class="gallery-image" />
+            
     </div>
-  </section>
+</section>
 
+<section id="Members" tabindex="0" class="members-section">
+    
+    <h3 class="committee-header">
+        <i class="fas fa-users committee-header-icon"></i>
+        <b>సంఘ కార్యవర్గం</b> 
+    </h3>
 
-<section id="Members" tabindex="0">
+    <div class="committee-grid">
         
-        <h3 style="color: var(--secondary-color); font-size: 1.6rem; margin-bottom: 15px; text-align: center; display: flex; align-items: center; justify-content: center;">
-            <i class="fas fa-users" style="margin-right: 10px; color: var(--primary-color);"></i>
-            <b>సంఘ కార్యవర్గం</b> 
-        </h3>
-
-        <hr style="border: 0; height: 1px; background-color: #b36b00; margin: 25px 0;">
-        
-        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 15px; margin-bottom: 25px; font-size: 1.05rem; padding: 0 15px;">
-            
-            <p style="font-weight: bold; color: #000; border-right: 1px solid #ccc; padding-right: 10px;">
-                <i class="fas fa-user-tie" style="color: #5c4827; margin-right: 5px;"></i> అధ్యక్షులు :
+        <div class="member-card">
+            <p class="member-title">
+                <i class="fas fa-user-tie member-icon"></i> అధ్యక్షులు:
             </p>
-            <p>మానుగర్ర సుబ్రహ్మణ్యేశ్వరరావు</p>
-            
-            <p style="font-weight: bold; color: #000; border-right: 1px solid #ccc; padding-right: 10px;">
-                <i class="fas fa-handshake" style="color: #5c4827; margin-right: 5px;"></i> ఉపాధ్యక్షులు :
-            </p>
-            <p>నేలకంటి లక్ష్మీపతి, మిరియాల రామశాస్త్రి</p>
-            
-            <p style="font-weight: bold; color: #000; border-right: 1px solid #ccc; padding-right: 10px;">
-                <i class="fas fa-pen-fancy" style="color: #5c4827; margin-right: 5px;"></i> సెక్రటరీ :
-            </p>
-            <p>మిరియాల నారాయణమురళీమోహన్</p>
-            
-            <p style="font-weight: bold; color: #000; border-right: 1px solid #ccc; padding-right: 10px;">
-                <i class="fas fa-users-cog" style="color: #5c4827; margin-right: 5px;"></i> జాయింట్ సెక్రటరీ :
-            </p>
-            <p>మిరియాల రామకృష్ణ</p>
-            <p style="font-weight: bold; color: #000; border-right: 1px solid #ccc; padding-right: 10px;">
-                <i class="fas fa-users-cog" style="color: #5c4827; margin-right: 5px;"></i> ట్రెజరర్ :
-            </p>
-            <p> మల్లెమడుగుల వెంకటలక్ష్మీనరసింహారావు </p>
-            </div>
-
-        <h4 style="color: var(--secondary-color); font-size: 1.25rem; margin-bottom: 10px; display: flex; align-items: center;">
-            <i class="fas fa-map-marked-alt" style="margin-right: 8px; color: var(--primary-color);"></i>
-            సంప్రదించవలసిన చిరునామా:
-        </h4>
-
-        <div style="background-color: #fff; padding: 15px; border-radius: 5px; border: 1px dashed #b36b00;">
-            
-            <p style="font-weight: bold; margin-bottom: 5px; color: #000;">
-                <i class="fas fa-user" style="margin-right: 5px; color: #333;"></i> మానుగర్ర సుబ్రహ్మణ్యేశ్వరరావు
-            </p>
-            <p style="line-height: 1.6; padding-left: 20px;">
-                <i class="fas fa-map-marker-alt" style="color: #b36b00; margin-right: 5px;"></i> 5-1-66, సీతయ్యగారి తోట, సూర్యచంద్రా రైస్ మిల్లు వెనుక,<br>
-                <span style="padding-left: 25px;">పిఠాపురం పోస్ట్ (మండలం), కాకినాడ జిల్లా.</span><br>
-                <span style="font-weight: bold; color: #008000; padding-left: 25px;">
-                    <i class="fas fa-phone-alt" style="margin-right: 5px;"></i> సెల్: 98661 88018
-                </span>
-            </p>
+            <p class="member-name">మానుగర్ర సుబ్రహ్మణ్యేశ్వరరావు</p>
         </div>
         
-        </section>
+        <div class="member-card">
+            <p class="member-title">
+                <i class="fas fa-handshake member-icon"></i> ఉపాధ్యక్షులు:
+            </p>
+            <p class="member-name">నేలకంటి లక్ష్మీపతి, మిరియాల రామశాస్త్రి</p>
+        </div>
+        
+        <div class="member-card">
+            <p class="member-title">
+                <i class="fas fa-pen-fancy member-icon"></i> సెక్రటరీ:
+            </p>
+            <p class="member-name">మిరియాల నారాయణమురళీమోహన్</p>
+        </div>
+        
+        <div class="member-card">
+            <p class="member-title">
+                <i class="fas fa-users-cog member-icon"></i> జాయింట్ సెక్రటరీ:
+            </p>
+            <p class="member-name">మిరియాల రామకృష్ణ</p>
+        </div>
+        
+        <div class="member-card">
+            <p class="member-title">
+                <i class="fas fa-money-check-alt member-icon"></i> ట్రెజరర్:
+            </p>
+            <p class="member-name">మల్లెమడుగుల వెంకటలక్ష్మీనరసింహారావు</p>
+        </div>
+    </div>
+
+    <hr class="contact-hr">
+
+    <h4 class="contact-subheader">
+        <i class="fas fa-map-marked-alt contact-subheader-icon"></i>
+        సంప్రదించవలసిన చిరునామా:
+    </h4>
+
+    <div class="contact-info-block">
+        
+        <p class="person-name">
+            <i class="fas fa-user-circle" style="margin-right: 8px; color: #333;"></i> **మానుగర్ర సుబ్రహ్మణ్యేశ్వరరావు**
+        </p>
+        
+        <p class="address-details">
+            <i class="fas fa-map-marker-alt address-icon"></i> **చిరునామా:** 5-1-66, సీతయ్యగారి తోట, సూర్యచంద్రా రైస్ మిల్లు వెనుక, పిఠాపురం పోస్ట్ (మండలం), కాకినాడ జిల్లా.
+        </p>
+        
+        <div class="phone-wrapper">
+            <p class="phone-number">
+                <i class="fas fa-phone-alt" style="margin-right: 8px; color: #2e7d32;"></i> సెల్: 98661 88018
+            </p>
+        </div>
+    </div>
+</section>
   </main>
 
 <button id="back-to-top" class="nav-btn" aria-label="పైకి వెళ్లండి" onclick="scrollToTop()"><span class="material-icons">keyboard_arrow_up</span></button>
 <button id="go-to-bottom" class="nav-btn" aria-label="కిందకు వెళ్లండి" onclick="scrollToBottom()"><span class="material-icons">keyboard_arrow_down</span></button>
 <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
 
-<script>
-    // Hamburger toggle for mobile nav
+<script type="text/javascript">
+    // --- Navigation Functions ---
+
+/**
+ * Smoothly scrolls the viewport to the top of the page.
+ */
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+/**
+ * Smoothly scrolls the viewport to the bottom of the page.
+ */
+function scrollToBottom() {
+    window.scrollTo({
+        top: document.body.scrollHeight, // Scrolls to the maximum height of the page
+        behavior: 'smooth'
+    });
+}
+
+// --- Scroll Visibility Logic (for "Back to Top") ---
+
+// Get the 'Back to Top' button element
+const backToTopButton = document.getElementById('back-to-top');
+
+// Function to handle showing/hiding the button
+function toggleBackToTopButton() {
+    // Show the button only if the user has scrolled down more than 300 pixels
+    if (document.body.scrollTop > 450 || document.documentElement.scrollTop > 450) {
+        backToTopButton.style.display = 'flex'; // Use 'flex' for centered icon
+    } else {
+        backToTopButton.style.display = 'none';
+    }
+}
+
+// Attach the toggle function to the scroll event
+window.onscroll = function() {
+    toggleBackToTopButton();
+};
+
+// Initial check when the page loads (in case the page is already long)
+document.addEventListener('DOMContentLoaded', toggleBackToTopButton);
+    
+    /**
+ * Toggles the visibility and appearance of the mobile navigation menu.
+ */
+function setupMobileMenuToggle() {
+    // Get the key elements
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
-    function toggleMenu() {
-        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', !expanded);
-        navMenu.classList.toggle('active');
-    }
-    hamburger.addEventListener('click', toggleMenu);
+    const fullMenuContainer = document.getElementById('full-menu-container');
 
-    // Close menu when a link is clicked (for mobile UX)
-    document.querySelectorAll('nav a').forEach(link => {
+    if (!hamburger || !navMenu || !fullMenuContainer) {
+        console.error("Missing required menu elements (hamburger, nav-menu, or full-menu-container).");
+        return;
+    }
+
+    // Function to toggle the menu state
+    const toggleMenu = () => {
+        // Toggle the 'active' class on the container (for overall header changes)
+        fullMenuContainer.classList.toggle('active');
+        
+        // Toggle the 'active' class on the menu (for visibility)
+        navMenu.classList.toggle('active');
+        
+        // Toggle the 'active' class on the hamburger icon (for animation/cross shape)
+        hamburger.classList.toggle('active');
+
+        // Update ARIA attributes for accessibility
+        const isExpanded = hamburger.classList.contains('active');
+        hamburger.setAttribute('aria-expanded', isExpanded);
+    };
+
+    // 1. Add click listener to the hamburger icon
+    hamburger.addEventListener('click', toggleMenu);
+    
+    // 2. Add click listeners to all nav links inside the menu
+    // This ensures the menu closes automatically when a link is clicked on mobile
+    const navLinks = navMenu.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (navMenu.classList.contains('active')) {
+            // Only close if the menu is currently open (and we are likely on mobile)
+            if (fullMenuContainer.classList.contains('active')) {
                 toggleMenu();
             }
         });
     });
+}
 
-    // Utility Buttons Logic (Back to Top/Bottom)
-    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
-    function scrollToBottom() { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }
-    
-    const backToTopBtn = document.getElementById('back-to-top');
-    const goToBottomBtn = document.getElementById('go-to-bottom');
-    
-    window.addEventListener('scroll', () => {
-        // Show utility buttons only on small screens for better UX
-        if (window.innerWidth <= 780) {
-            if(window.scrollY > 300) backToTopBtn.style.display = 'flex';
-            else backToTopBtn.style.display = 'none';
+// Run the setup function once the document is fully loaded
+document.addEventListener('DOMContentLoaded', setupMobileMenuToggle);
+    </script>
 
-            const isAtBottom = (window.innerHeight + window.scrollY) >= document.body.scrollHeight - 50;
-            // Show Go to Bottom button only if scrolled down a bit and not already at the bottom
-            if (window.scrollY > 100 && !isAtBottom) {
-                goToBottomBtn.style.display = 'flex';
-            } else {
-                goToBottomBtn.style.display = 'none';
-            }
-        } else {
-            // Hide buttons on larger screens
-            backToTopBtn.style.display = 'none';
-            goToBottomBtn.style.display = 'none';
-        }
-    });
-
-    // Lightbox gallery
-    document.querySelectorAll('.gallery img').forEach(img => {
-        img.addEventListener('click', () => {
-            basicLightbox.create(`<img src="${img.src}" alt="${img.alt}" style="max-width:90vw; max-height:90vh;">`).show();
-        });
-    });
-</script>
 </body>
 </html>
