@@ -1360,7 +1360,7 @@ p {
     <div class="logo-block">
         <div class="image-flex-container">
             <img src="32px-Om_symbol.svg.png" alt="ఓం లోగో" class="om-logo" />
-            <img src="Image 3.jpg" alt="శ్రీ యాజ్ఞవల్క్య ఋషి చిత్రం" class="yagnavalkya-image" />
+            <img src="Image 9.jpg" alt="శ్రీ యాజ్ఞవల్క్య ఋషి చిత్రం" class="yagnavalkya-image" />
             <img src="32px-Om_symbol.svg.png" alt="ఓం లోగో" class="om-logo" />
         </div>
         <p class="mantra-text">
@@ -1504,32 +1504,13 @@ p {
     </h3>
 <div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ">
     
-    <div class="gallery-item-wrapper">
-        <img src="Image 1.jpg" alt="ఆధ్యాత్మిక జపం" tabindex="0" class="gallery-image" />
-        <a href="Image 1.jpg" download="ఆధ్యాత్మిక జపం.jpg" class="image-download-btn">
-            <i class="fas fa-download download-icon-sm"></i> డౌన్‌లోడ్
-        </a>
+  <div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ" id="dynamic-gallery">
     </div>
-        
-    <div class="gallery-item-wrapper">
-        <img src="Image 2.jpg" alt="ఆలయ అలంకరణ" tabindex="0" class="gallery-image" />
-        <a href="Image 2.jpg" download="ఆలయ అలంకరణ.jpg" class="image-download-btn">
-            <i class="fas fa-download download-icon-sm"></i> డౌన్‌లోడ్
-        </a>
-    </div>
-        
-    <div class="gallery-item-wrapper">
-        <img src="Image 3.jpg" alt="పూజ కార్యక్రమం" tabindex="0" class="gallery-image" />
-        <a href="Image 3.jpg" download="పూజ కార్యక్రమం.jpg" class="image-download-btn">
-            <i class="fas fa-download download-icon-sm"></i> డౌన్‌లోడ్
-        </a>
-    </div>
-        <div class="gallery-item-wrapper">
-        <img src="Image 4.jpg" alt="పూజ కార్యక్రమం" tabindex="0" class="gallery-image" />
-        <a href="Image 4.jpg" download="పూజ కార్యక్రమం.jpg" class="image-download-btn">
-            <i class="fas fa-download download-icon-sm"></i> డౌన్‌లోడ్
-        </a>
-    </div>
+
+<script>
+    // Call the JavaScript function below to populate the gallery when the page loads.
+    document.addEventListener('DOMContentLoaded', generateSimpleGallery);
+</script>
 </div>
 </section>
 
@@ -1575,7 +1556,7 @@ p {
             <p class="member-title">
                 <i class="fas fa-money-check-alt member-icon"></i> ట్రెజరర్:
             </p>
-            <p class="member-name">మల్లెమడుగుల వెంకటలక్ష్మీనరసింహారావు</p>
+            <p class="member-name">మల్లెమడుగుల వెంకటలక్ష్మీ నరసింహారావు</p>
         </div>
     </div>
 
@@ -1589,11 +1570,11 @@ p {
     <div class="contact-info-block">
         
         <p class="person-name">
-            <i class="fas fa-user-circle" style="margin-right: 8px; color: #333;"></i> **మానుగర్ర సుబ్రహ్మణ్యేశ్వరరావు**
+            <i class="fas fa-user-circle" style="margin-right: 8px; color: #333;"></i> మానుగర్ర సుబ్రహ్మణ్యేశ్వరరావు
         </p>
         
         <p class="address-details">
-            <i class="fas fa-map-marker-alt address-icon"></i> **చిరునామా:** 5-1-66, సీతయ్యగారి తోట, సూర్యచంద్రా రైస్ మిల్లు వెనుక, పిఠాపురం పోస్ట్ (మండలం), కాకినాడ జిల్లా.
+            <i class="fas fa-map-marker-alt address-icon"></i> చిరునామా: 5-1-66, సీతయ్యగారి తోట, సూర్యచంద్రా రైస్ మిల్లు వెనుక, పిఠాపురం పోస్ట్ (మండలం), కాకినాడ జిల్లా.
         </p>
         
         <div class="phone-wrapper">
@@ -1702,7 +1683,45 @@ function setupMobileMenuToggle() {
 
 // Run the setup function once the document is fully loaded
 document.addEventListener('DOMContentLoaded', setupMobileMenuToggle);
-    </script>
-
+   
+    function generateSimpleGallery() {
+        // Descriptive names for the download links and alt text (can be customized)
+        const descriptions = [
+            "ఆధ్యాత్మిక జపం", 
+            "ఆలయ అలంకరణ", 
+            "పూజ కార్యక్రమం", 
+            "ఉత్సవ దృశ్యం", 
+            "ఒరిజినల్ పెయింట్", 
+            "రామకృష్ణ గారు", 
+            "గుంటూరు సభ", 
+            "సాంప్రదాయ నృత్యం",
+            "సంఘ సభ్యులు"
+        ];
+        
+        const galleryContainer = document.getElementById('dynamic-gallery');
+        let galleryHTML = '';
+        
+        // Loop from 1 up to (and including) 8
+        for (let i = 1; i <= 8; i++) {
+            const fileName = `Image ${i}.jpg`;
+            // Get the appropriate description (adjusting for 0-based array index)
+            const descriptionText = descriptions[i - 1] || `చిత్రం ${i}`; 
+            
+            galleryHTML += `
+                <div class="gallery-item-wrapper">
+                    <img src="${fileName}" alt="${descriptionText}" tabindex="0" class="gallery-image" />
+                    <a href="${fileName}" download="${descriptionText}.jpg" class="image-download-btn">
+                        <i class="fas fa-download download-icon-sm"></i> డౌన్‌లోడ్
+                    </a>
+                </div>
+            `;
+        }
+        
+        galleryContainer.innerHTML = galleryHTML;
+    }
+    
+    // Ensure the function runs after the page is fully loaded
+    document.addEventListener('DOMContentLoaded', generateSimpleGallery);
+</script>
 </body>
 </html>
