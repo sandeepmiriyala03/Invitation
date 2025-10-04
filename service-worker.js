@@ -4,8 +4,21 @@ const urlsToCache = [
     '/index.html',
     '/manifest.json',
     '/pwa.js',
-   
- 
+   '/Image 1.jpg',
+  '/Image 2.jpg',
+  '/Image 3.jpg',
+  '/Image 4.jpg',
+  '/Image 5.jpg',
+  '/Image 6.jpg',
+  '/Image 7.jpg',
+  '/Image 8.jpg',
+  '/Image 9.jpg',
+  '/Image 10.jpg',
+  '/Image 11.jpg',
+  '/Image 12.jpg',
+  '/Image 13.jpg',
+  '/Image 14.jpg',
+    'TTD Video.mp4',
 ];
 
 // Install event: Caches the initial assets
