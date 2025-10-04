@@ -3,9 +3,8 @@ const urlsToCache = [
     '/',
     '/index.html',
     '/manifest.json',
-    '/pwa-install.js',
-    '/icon-192.png', // Ensure these icon files exist in the root!
-    '/icon-512.png',
+    '/pwa.js',
+   
     // Add paths to your main CSS, fonts, and other critical assets here
 ];
 
