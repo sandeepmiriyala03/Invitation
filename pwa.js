@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('appinstalled', () => {
     
     installBtn.style.setProperty('display', 'none', 'important');
-    console.log('AksharaChitra PWA was installed');
+    console.log(' PWA was installed');
   });
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/service-worker.js')
