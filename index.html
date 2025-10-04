@@ -1960,13 +1960,19 @@ document.addEventListener('DOMContentLoaded', setupMobileMenuToggle);
             "7", 
             "8",
             "9"
+            , "10",
+            "11",
+            "12",
+            "13",
+            "14"
+
         ];
         
         const galleryContainer = document.getElementById('dynamic-gallery');
         let galleryHTML = '';
         
         // Loop from 1 up to (and including) 8
-        for (let i = 1; i <= 9; i++) {
+        for (let i = 1; i <= 14; i++) {
             const fileName = `Image ${i}.jpg`;
             // Get the appropriate description (adjusting for 0-based array index)
             const descriptionText = descriptions[i - 1] || `చిత్రం ${i}`; 
