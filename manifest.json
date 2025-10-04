@@ -1,10 +1,10 @@
 {
-  "name": "శ్రీ యాజ్ఞవల్క్య సంఘము",
-  "short_name": "శ్రీ యాజ్ఞవల్క్య సంఘము",
+  "name": "శ్రీ యాజ్ఞవల్క్య",
+  "short_name": "శ్రీ యాజ్ఞవల్క్య",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#3367d6",
+  "background_color": "#fff7e5",
+  "theme_color": "#ff9800",
   "icons": [
     {
       "src": "Image 1.jpg",

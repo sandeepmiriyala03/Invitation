@@ -1,11 +1,11 @@
-const CACHE_NAME = 'yagnavalkya-pwa-v1'; // Change version number to update cache
+const CACHE_NAME = ' శ్రీ యాజ్ఞవల్క్య'; // Change version number to update cache
 const urlsToCache = [
     '/',
     '/index.html',
     '/manifest.json',
     '/pwa.js',
    
-    // Add paths to your main CSS, fonts, and other critical assets here
+ 
 ];
 
 // Install event: Caches the initial assets
