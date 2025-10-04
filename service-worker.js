@@ -1,22 +1,64 @@
-const CACHE_NAME = 'yagnavalkya-invitation-v1';
+const CACHE_NAME = 'yagnavalkya-pwa-v1'; // Change version number to update cache
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/32px-Om_symbol.svg.png',
-  '/Image 9.jpg',
-  '/TTD Video.mp4',
-  // Add all images and assets you want to cache for offline
+    '/',
+    '/index.html',
+    '/manifest.json',
+    '/pwa-install.js',
+    '/icon-192.png', // Ensure these icon files exist in the root!
+    '/icon-512.png',
+    // Add paths to your main CSS, fonts, and other critical assets here
 ];
 
+// Install event: Caches the initial assets
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
-  );
+    console.log('[Service Worker] Install Event: Caching App Shell');
+    event.waitUntil(
+        caches.open(CACHE_NAME)
+            .then(cache => {
+                return cache.addAll(urlsToCache);
+            })
+            .then(() => {
+                // Forces the waiting worker to activate immediately
+                return self.skipWaiting(); 
+            })
+    );
 });
 
+// Activate event: Cleans up old caches
+self.addEventListener('activate', event => {
+    console.log('[Service Worker] Activate Event: Cleaning old caches');
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheName !== CACHE_NAME) {
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        }).then(() => {
+            // Takes control of clients immediately upon activation
+            return self.clients.claim();
+        })
+    );
+});
+
+// Fetch event: Tries to serve assets from cache first, then falls back to network
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => response || fetch(event.request))
-  );
+    // Only handle GET requests from the same origin
+    if (event.request.method !== 'GET' || !event.request.url.startsWith(self.location.origin)) {
+        return;
+    }
+    
+    event.respondWith(
+        caches.match(event.request)
+            .then(response => {
+                // Cache hit - return response
+                if (response) {
+                    return response;
+                }
+                // Fallback to network
+                return fetch(event.request);
+            })
+    );
 });
