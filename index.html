@@ -1774,14 +1774,18 @@ p {
         <span class="material-icons subheader-icon">videocam</span> వీడియో:
     </h3>
     
-    <div id="video-container" class="video-responsive">
-        <iframe 
-            src="TTD Video.mp4" 
-            title="ఈవెంట్ ముఖ్యాంశాలు" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen 
-        ></iframe>
-    </div>
+  <div id="video-container" class="video-responsive">
+    <video 
+        src="TTD Video.mp4" 
+        title="ఈవెంట్ ముఖ్యాంశాలు" 
+        controls 
+        preload="metadata" 
+        poster="path/to/your/poster/image.jpg"
+        class="video-player-element"
+    >
+        Your browser does not support the video tag.
+    </video>
+</div>
 
     <h3 class="media-subheader">
         <span class="material-icons subheader-icon">image</span> చిత్రాలు:
