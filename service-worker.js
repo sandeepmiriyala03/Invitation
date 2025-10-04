@@ -18,7 +18,9 @@ const urlsToCache = [
   '/Image 12.jpg',
   '/Image 13.jpg',
   '/Image 14.jpg',
-    'TTD Video.mp4',
+    '/TTD Video.mp4',
+    '/శ్రీ యాజ్ఞవల్క్యు సుప్రభాత స్తోత్రం.mp3',
+    '/శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం.pdf'
 ];
 
 // Install event: Caches the initial assets
