@@ -1361,33 +1361,39 @@ p {
     }
 } 
 
-/* Install button */
 #installBtn {
-  position: fixed;
-  top: 15px;
-  right: 15px;
+  position: relative; /* inside header */
   background-color: #4caf50;
   color: white;
   border: none;
-  padding: 6px 12px 6px 24px;
+  padding: 4px 14px 4px 20px;
   font-weight: 600;
-  box-shadow: 0 0 12px rgba(76, 175, 80, 0.6);
-  border-radius: 6px;
+  font-size: 0.9rem;
+  box-shadow: 0 0 8px rgba(76, 175, 80, 0.6);
+  border-radius: 4px;
   user-select: none;
   background-repeat: no-repeat;
-  background-position: 14px center;
-  background-size: 16px 16px;
+  background-position: 12px center;
+  background-size: 14px 14px;
   cursor: pointer;
-  z-index: 1100;
-  transition: background-color 0.25s ease;
+  z-index: 10;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#installBtn .material-icons {
+  font-size: 1.3rem;
 }
 
 #installBtn:hover,
 #installBtn:focus {
   background-color: #388e3c;
   outline: none;
-  box-shadow: 0 0 18px rgba(56, 142, 60, 0.9);
+  box-shadow: 0 0 12px rgba(56, 142, 60, 0.9);
 }
+
 
 
     </style>
