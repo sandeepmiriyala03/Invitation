@@ -1463,6 +1463,34 @@ p {
   outline: none;
   box-shadow: 0 0 12px rgba(56, 142, 60, 0.9);
 }
+.marquee-container {
+  width: 40%;
+  margin: 10px auto 20px;
+  background-color: #f7f3f2;
+  color: #6a1b9a;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Noto Sans Telugu', sans-serif;
+  font-size: 1.1rem;
+  padding: 8px 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .marquee-container {
+    width: 70%;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .marquee-container {
+    width: 90%;
+    font-size: 0.9rem;
+    padding: 6px 8px;
+  }
+}
 
     </style>
 </head>
@@ -1488,8 +1516,6 @@ p {
         </div>
         </div>
     </header>
-
-  
     </div>
     <nav id="nav-menu" aria-label="ముఖ్య నావిగేషన్">
      
@@ -1871,6 +1897,11 @@ p {
             </p>
         </div>
     </div>
+    <div class="marquee-container">
+  <marquee behavior="scroll" direction="left" scrollamount="5">
+    ఓం పూర్ణమద: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే
+  </marquee>
+</div>
   <footer style="text-align: center; padding: 20px 10px; background-color: #f3e5f5; color: #6a1b9a; border-top: 1px solid #d1c4e9; font-family: 'Noto Sans Telugu', sans-serif; font-size: 0.9rem;">
   © <span id="currentYear"></span>:శ్రీ యాజ్ఞవల్క్య సంఘము పిఠాపురం.94 వ జయంతి పీఠికాపురమునందు 
 </footer>
