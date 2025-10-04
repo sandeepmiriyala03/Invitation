@@ -1775,7 +1775,7 @@ p {
     </h3>
     
   <div id="video-container" class="video-responsive">
-    <video 
+    <video id ="ttdvideo"
         src="TTD Video.mp4" 
         title="ఈవెంట్ ముఖ్యాంశాలు" 
         controls 
@@ -2014,7 +2014,14 @@ function setupMobileMenuToggle() {
     }
 document.addEventListener('DOMContentLoaded', setupMobileMenuToggle);
 document.addEventListener('DOMContentLoaded', generateSimpleGallery);
-
+ document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('ttdvideo');
+    if (video) {
+      video.pause();
+      // Optionally reset current time to 0
+      video.currentTime = 0;
+    }
+  });
 
 </script>
   <script src="pwa.js"></script>
