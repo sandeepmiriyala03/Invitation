@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;700&family=Roboto+Slab:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css">
-    
+      <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6a1b9a">
+   
     <style>
 
 
@@ -1356,62 +1358,119 @@ p {
     .content-heading {
         font-size: 1.2em;
     }
-}
+} 
+
+        /* --- PWA Install Button Styles --- */
+        #pwa-install-section {
+            background: #e0f7fa;
+            border-radius: 18px;
+            box-shadow: 0 4px 16px rgba(106,27,154,0.10);
+            padding: 28px 18px 22px;
+            margin: 30px auto 40px;
+            max-width: 420px;
+            text-align: center;
+            display: none; /* Hidden by default, shown by JS if needed */
+            position: relative;
+        }
+        #pwa-install-section .install-header {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #6a1b9a;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        #pwa-install-section .install-desc {
+            color: #4b3b29;
+            font-size: 1.08rem;
+            margin-bottom: 18px;
+        }
+        #pwa-install-btn {
+            background: #ff9800;
+            color: #fff;
+            border: none;
+            border-radius: 30px;
+            padding: 13px 32px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            box-shadow: 0 4px 14px rgba(255,152,0,0.18);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        #pwa-install-btn:hover, #pwa-install-btn:focus {
+            background: #f57c00;
+            transform: translateY(-2px) scale(1.03);
+            outline: none;
+        }
+        #pwa-installed-msg {
+            color: #388e3c;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            display: none;
+        }
+        @media (max-width: 600px) {
+            #pwa-install-section {
+                padding: 18px 6px 16px;
+                max-width: 98vw;
+            }
+        }
     </style>
 </head>
 <body>
-
 <div id="full-menu-container" class="combined-header">
     <div class="header-content">
-        
         <h1 class="site-title">
             శ్రీ యాజ్ఞవల్క్య జయంత్యుత్సవ సంఘము పిఠాపురం
         </h1>
-        
-        <div class="hamburger" id="hamburger" aria-label="నావిగేషన్ మెనూ టోగుల్" aria-expanded="false" tabindex="0" role="button">
-            <span></span>
-            <span></span>
-            <span></span>
+        <div class="header-actions" style="display: flex; align-items: center; gap: 10px;">
+           
+            <button id="pwa-install-btn-mini" title="యాప్ ఇన్‌స్టాల్" style="background: none; border: none; cursor: pointer; padding: 4px; border-radius: 50%; transition: background 0.2s;">
+                <span class="material-icons" style="color:#ff9800; font-size: 2rem;">download</span>
+            </button>
+            <div class="hamburger" id="hamburger" aria-label="నావిగేషన్ మెనూ టోగుల్" aria-expanded="false" tabindex="0" role="button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </div>
-
     <nav id="nav-menu" aria-label="ముఖ్య నావిగేషన్">
-        
-      
         <a href="#about" class="nav-link">
-    <span class="material-icons nav-icon" style="margin-right: 8px; color: #8e24aa;">
-        workspace_premium
-    </span>
-    యాజ్ఞవల్క్య మహర్షి
-</a>
+            <span class="material-icons nav-icon" style="margin-right: 8px; color: #8e24aa;">
+                workspace_premium
+            </span>
+            యాజ్ఞవల్క్య మహర్షి
+        </a>
         <a href="#main" class="nav-link">
             <span class="material-icons nav-icon" style="margin-right: 8px;">
                 home
             </span>
             ఆహ్వానం
         </a>
-        
         <a href="#program-details" class="nav-link">
             <span class="material-icons nav-icon" style="margin-right: 8px;">
                 event
             </span>
             వివరములు
         </a>
-        
         <a href="#invitations" class="nav-link">
             <span class="material-icons nav-icon" style="margin-right: 8px;">
                 file_download
             </span>
             ఆహ్వానం డౌన్లోడ్
         </a>
-        
         <a href="#gallery" class="nav-link">
             <span class="material-icons nav-icon" style="margin-right: 8px;">
                 photo_library
             </span>
             గ్యాలరీ &amp; వీడియో
         </a> 
-        
         <a href="#Members" class="nav-link">
             <span class="material-icons nav-icon" style="margin-right: 8px;">
                 group
@@ -1420,6 +1479,8 @@ p {
         </a> 
     </nav>
 </div>
+
+
 <main>
   
 <section id="yagnavalkya-stotra" class="stotra-section">
@@ -1925,6 +1986,82 @@ document.addEventListener('DOMContentLoaded', setupMobileMenuToggle);
     
     // Ensure the function runs after the page is fully loaded
     document.addEventListener('DOMContentLoaded', generateSimpleGallery);
+  let deferredPrompt = null;
+const pwaSection = document.getElementById('pwa-install-section');
+const pwaBtn = document.getElementById('pwa-install-btn');
+const pwaMsg = document.getElementById('pwa-installed-msg');
+const miniBtn = document.getElementById('pwa-install-btn-mini'); // Mini icon button in header
+
+// Utility: Check if running as standalone (installed)
+function isAppInstalled() {
+    if (window.matchMedia('(display-mode: standalone)').matches) return true;
+    if (window.navigator.standalone === true) return true;
+    return false;
+}
+
+// Listen for the beforeinstallprompt event
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Show the install section only if not already installed
+    if (!isAppInstalled()) {
+        if (pwaSection) pwaSection.style.display = 'block';
+        if (miniBtn) miniBtn.style.display = 'inline-flex';
+    }
+});
+
+// Hide the install section and mini button if already installed
+function hidePwaSectionIfInstalled() {
+    if (isAppInstalled()) {
+        if (pwaSection) pwaSection.style.display = 'none';
+        if (pwaMsg) pwaMsg.style.display = 'block';
+        if (miniBtn) miniBtn.style.display = 'none';
+    }
+}
+
+// Main install button click handler
+if (pwaBtn) {
+    pwaBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                if (pwaSection) pwaSection.style.display = 'none';
+                if (pwaMsg) pwaMsg.style.display = 'block';
+                if (miniBtn) miniBtn.style.display = 'none';
+            }
+            deferredPrompt = null;
+        }
+    });
+}
+
+// Mini icon install button click handler
+if (miniBtn) {
+    miniBtn.style.display = 'none'; // Hide by default
+    miniBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt = null;
+        }
+    });
+}
+
+// Listen for appinstalled event
+window.addEventListener('appinstalled', () => {
+    if (pwaSection) pwaSection.style.display = 'none';
+    if (pwaMsg) pwaMsg.style.display = 'block';
+    if (miniBtn) miniBtn.style.display = 'none';
+});
+
+// On load, hide if already installed
+document.addEventListener('DOMContentLoaded', hidePwaSectionIfInstalled);
+
+// --- Service Worker Registration ---
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('service-worker.js');
+    });
+}
 </script>
 </body>
 </html>

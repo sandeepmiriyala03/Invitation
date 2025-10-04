@@ -1,0 +1,21 @@
+{
+  "name": "శ్రీ యాజ్ఞవల్క్య జయంత్యుత్సవ పిఠాపురం",
+  "short_name": "యాజ్ఞవల్క్య ఉత్సవం",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff7e5",
+  "theme_color": "#6a1b9a",
+  "description": "శ్రీ యాజ్ఞవల్క్య జయంత్యుత్సవ సంఘము, పిఠాపురం యొక్క అధికారిక ఆహ్వాన యాప్.",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
