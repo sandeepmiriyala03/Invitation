@@ -417,7 +417,6 @@ function downloadCertificate(element) {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        alert("సర్టిఫికెట్ విజయవంతంగా డౌన్‌లోడ్ చేయబడింది!");
     });
 }
 
