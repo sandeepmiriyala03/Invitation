@@ -267,6 +267,8 @@ function showResults(score) {
 
     certContainer.innerHTML = `
         <h3 class="certificate-header">శ్రీ యాజ్ఞవల్క్య క్విజ్ - ఫలితం</h3>
+        <image src="Image 2.jpg" alt="Om Symbol" style="width: 80px; margin: 10px 0;"/>
+    
         <p style="color: ${isPassed ? 'var(--success-color)' : 'var(--failure-color)'}; font-weight: 600;">
             ${resultMessage}
         </p>
@@ -277,7 +279,7 @@ function showResults(score) {
             క్విజ్‌లో పాల్గొన్నందుకు ధన్యవాదాలు! మీ జ్ఞానాన్ని అభినందిస్తున్నాము.
         </p>
         <footer style="margin-top: 20px; font-size: 0.9rem; color: #888;">
-         ఓం పూర్ణమద: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే 
+         ఓం పూర్ణమద: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే ||
         </footer>
     `;
     appRoot.appendChild(certContainer);
