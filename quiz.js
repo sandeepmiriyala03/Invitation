@@ -50,27 +50,29 @@ function applyStyles() {
         :root {
             --primary-color: #6A1B9A; /* ముదురు ఊదా */
             --secondary-color: #F3E5F5; /* లేత ఊదా నేపథ్యం */
-            --success-color: #28a745;
+            --success-color: #1a7e4b; /* మరింత డార్క్ గ్రీన్ */
             --failure-color: #dc3545;
+            --download-color: #007bff; /* నీలం రంగును డౌన్‌లోడ్ చర్యకు ఉపయోగించడం */
+            --whatsapp-color: #25D366; /* WhatsApp Green */
         }
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
             line-height: 1.6;
-            padding: 10px; /* మొబైల్ కోసం ప్యాడింగ్‌ను తగ్గించడం */
+            padding: 10px;
         }
         #quizApp {
-            max-width: 600px; /* మొబైల్ కోసం వెడల్పు తగ్గించడం */
+            max-width: 600px;
             margin: 0 auto;
             background: #fff;
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* షాడో మెరుగుపరచబడింది */
         }
         .header-title {
             color: var(--primary-color);
             text-align: center;
-            font-size: 1.8rem; /* మొబైల్ కోసం ఫాంట్ సైజు తగ్గించడం */
+            font-size: 1.8rem;
             margin-bottom: 10px;
             border-bottom: 3px solid var(--secondary-color);
             padding-bottom: 10px;
@@ -95,98 +97,162 @@ function applyStyles() {
             font-size: 1rem;
         }
         .option-label {
-            display: flex; /* ఫ్లెక్స్ లేఅవుట్ */
+            display: flex;
             align-items: center;
             background-color: #ffffff;
             border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 8px;
-            border-radius: 6px;
+            padding: 12px; /* టచ్ టార్గెట్ పెంచబడింది */
+            margin-bottom: 10px; /* స్పేసింగ్ పెంచబడింది */
+            border-radius: 8px;
             cursor: pointer;
-            transition: background-color 0.2s, border-color 0.2s;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
         .option-label:hover {
-            background-color: #f0f0f0;
+            background-color: var(--secondary-color); /* లేత ఊదా రంగు */
             border-color: var(--primary-color);
         }
         .option-input[type="radio"] {
-            margin-right: 10px;
+            margin-right: 15px;
             accent-color: var(--primary-color);
-            min-width: 20px; /* రేడియో బటన్ కోసం కనీస పరిమాణం */
+            min-width: 20px;
             min-height: 20px;
         }
         .submit-button {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 1rem;
+            padding: 12px 20px; /* ప్యాడింగ్ పెంచబడింది */
+            font-size: 1.1rem; /* ఫాంట్ సైజు పెంచబడింది */
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
             display: block;
             width: 100%;
-            margin-top: 25px;
-            transition: background-color 0.3s;
+            margin-top: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.1s;
         }
         .submit-button:hover {
             background-color: #4A148C;
+            transform: translateY(-1px); /* చిన్న 3D ప్రభావం */
         }
+        
         /* సర్టిఫికెట్ స్టైల్స్ */
         #certificateContainer {
             text-align: center;
-            padding: 25px 15px; /* మొబైల్ కోసం ప్యాడింగ్‌ను సర్దుబాటు చేయడం */
-            border: 4px double var(--primary-color);
-            background: #fffafa;
-            border-radius: 10px;
-            margin-top: 20px;
+            padding: 30px 20px; /* ప్యాడింగ్ పెంచబడింది */
+            border: 5px solid var(--primary-color); /* ఘన సరిహద్దు (Solid Border) */
+            background: #ffffff; /* తెలుపు నేపథ్యం */
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* మెరుగైన షాడో */
+            position: relative;
+            overflow: hidden;
         }
+
+        /* సర్టిఫికేట్ కోసం అలంకార మూలకం */
+        #certificateContainer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background-color: var(--secondary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
         .score-display {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 900;
-            margin: 10px 0;
+            margin: 15px 0;
         }
         .pass { color: var(--success-color); }
         .fail { color: var(--failure-color); }
         .certificate-header {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--primary-color);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .certificate-subheader {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 20px;
         }
         .certificate-buttons {
-            margin-top: 20px;
+            margin-top: 25px;
             display: flex;
-            flex-direction: column; /* మొబైల్ కోసం బటన్లను నిలువుగా మార్చడం */
-            gap: 10px;
+            flex-direction: column;
+            gap: 15px; /* బటన్ల మధ్య స్పేసింగ్ పెంచబడింది */
         }
+        
         .action-btn {
-            background-color: var(--success-color);
             color: white;
-            padding: 10px 15px;
+            padding: 15px 20px; /* టచ్ టార్గెట్ మరియు ప్యాడింగ్ పెంచబడింది */
             border: none;
-            border-radius: 5px;
+            border-radius: 10px; /* గుండ్రటి మూలలు */
             cursor: pointer;
-            width: 100%; /* మొబైల్‌లో పూర్తి వెడల్పు */
+            width: 100%;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.1s, box-shadow 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        .action-btn i {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        /* డౌన్‌లోడ్ బటన్ స్టైల్స్ - ప్రాథమిక చర్య */
+        .action-btn.download {
+            background-color: var(--download-color);
+            border: 2px solid var(--download-color);
+        }
+        .action-btn.download:hover {
+            background-color: #0056b3;
+        }
+        
+        /* షేర్ బటన్ స్టైల్స్ - ద్వితీయ చర్య */
         .action-btn.share {
-            background-color: #25D366; /* WhatsApp Green */
+            background-color: var(--whatsapp-color);
+            border: 2px solid var(--whatsapp-color);
+        }
+        .action-btn.share:hover {
+            background-color: #1DA851;
         }
 
         /* డెస్క్‌టాప్ కోసం మీడియా క్వెరీ */
         @media (min-width: 601px) {
-            .header-title { font-size: 2.2rem; }
-            .score-display { font-size: 2.5rem; }
+            .header-title { font-size: 2.5rem; }
+            .score-display { font-size: 3rem; }
             .certificate-buttons {
                 flex-direction: row;
                 justify-content: center;
+                gap: 20px;
             }
             .action-btn {
-                width: auto;
+                width: 45%; /* డెస్క్‌టాప్‌లో పక్కపక్కన ఉండేలా వెడల్పు */
+                max-width: 250px;
             }
         }
     `;
     document.head.appendChild(style);
 }
+// Note: To use the icons (<i> tags), you need to include a font icon library like Font Awesome in your HTML.
+// e.g. <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+// <button class="action-btn download"><i class="fas fa-download"></i> Download Certificate</button>
+// <button class="action-btn share"><i class="fab fa-whatsapp"></i> Share on WhatsApp</button>
 
 // =================================================================
 // 4. క్విజ్ లాజిక్ ఫంక్షన్లు
@@ -231,8 +297,7 @@ function createQuizUI() {
         qP.innerText = `${idx + 1}. ${item.q}`;
         qDiv.appendChild(qP);
 
-        // ఆప్షన్లను షఫుల్ చేయవచ్చు (ఐచ్ఛికం)
-        // const shuffledOptions = shuffleOptions([...item.options], item.answer);
+      
 
         item.options.forEach((opt, optIdx) => {
             const label = document.createElement('label');
