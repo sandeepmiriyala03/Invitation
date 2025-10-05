@@ -295,7 +295,6 @@ function showResults(score) {
     downloadBtn.onclick = () => downloadCertificate(certContainer);
     actionButtons.appendChild(downloadBtn);
 
-    
     // 3. మళ్లీ ప్రయత్నించండి బటన్
     const retryBtn = document.createElement('button');
     retryBtn.className = 'action-btn';
