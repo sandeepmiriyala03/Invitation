@@ -8,8 +8,8 @@ const questions = [
   { q: "యాజ్ఞవల్క్య మహర్షి రచించిన ధర్మ శాస్త్ర గ్రంథం ఏది?", options: ["యాజ్ఞవల్క్య స్మృతి", "మనుస్మృతి", "పరాశర స్మృతి"], answer: 0 },
   { q: "యాజ్ఞవల్క్య మహర్షి ప్రధాన ఉపనిషత్తు ఏది?", options: ["బృహదారణ్యక ఉపనిషత్తు", "చాందోగ్య ఉపనిషత్తు", "కేన ఉపనిషత్తు"], answer: 0 },
   { q: "యాజ్ఞవల్క్య మహర్షి రచించిన ముఖ్యమైన బ్రాహ్మణ గ్రంథం ఏది?", options: ["శతపథ బ్రాహ్మణం", "ఐతరేయ బ్రాహ్మణం", "తైత్తిరీయ బ్రాహ్మణం"], answer: 0 },
-  { q: "యాజ్ఞవల్క్య మహర్షి  భార్య పేరు?", options: ["మైత్రేయి", "కాత్యాయిని", "సునంద"], answer: 1 },
-  { q: "యాజ్ఞవల్క్య మహర్షి  ఎవరు, వీరితో బ్రహ్మజ్ఞానం గురించి చర్చించారు?", options: ["మైత్రేయి", "కాత్యాయిని", "గార్గి"], answer: 0 },
+  { q: "యాజ్ఞవల్క్య మహర్షి  భార్య పేరు?", options: ["మైత్రేయి", "కాత్యాయిని", "సునంద"], answer: 1 },
+  { q: "యాజ్ఞవల్క్య మహర్షి  ఎవరు, వీరితో బ్రహ్మజ్ఞానం గురించి చర్చించారు?", options: ["మైత్రేయి", "కాత్యాయిని", "గార్గి"], answer: 0 },
   { q: "యాజ్ఞవల్క్యుడు ఎవరి శిష్యుడిగా వేదాలను అభ్యసించారు?", options: ["వైశంపాయనుడు", "కణ్వ మహర్షి", "భాస్కలుడు"], answer: 0 },
   { q: "గురువు శాపం తర్వాత, యాజ్ఞవల్క్యుడు వేద జ్ఞానాన్ని తిరిగి ఎవరి నుండి పొందారు?", options: ["సూర్య భగవానుడు", "వాయు దేవుడు", "ఇంద్రుడు"], answer: 0 },
   { q: "యాజ్ఞవల్క్యుడు బ్రహ్మజ్ఞానం గురించి ప్రసిద్ధి చెందిన వాక్యం?", options: ["నేతి నేతి (ఇది కాదు, ఇది కాదు)", "తత్త్వమసి", "అహం బ్రహ్మాస్మి"], answer: 0 },
@@ -26,7 +26,6 @@ const questions = [
   { q: "యాజ్ఞవల్క్య స్మృతిలోని రెండవ భాగం దేని గురించి వివరిస్తుంది?", options: ["వ్యవహారం (చట్టాలు, న్యాయం)", "ఆచారం", "ప్రాయశ్చిత్తం"], answer: 0 },
   { q: "బ్రహ్మజ్ఞానం పొందడానికి భార్య మైత్రేయిని యాజ్ఞవల్క్యుడు ఎక్కడ వదిలి వెళ్లారు?", options: ["హిమాలయాలు", "మిథిలా నగరం", "వారణాసి"], answer: 0 },
   { q: "యాజ్ఞవల్క్యుడు శిష్యులకు ఉపదేశించిన జ్ఞానం ఏ రూపంలో ఉంది?", options: ["శ్రుతి (విని నేర్చుకునేది)", "స్మృతి", "తంత్రం"], answer: 0 },
-
   { q: "యాజ్ఞవల్క్య మహర్షి శాంతి కోసం ఏది పఠించాలని సూచించారు?", options: ["గాయత్రీ మంత్రం", "సహస్రనామం", "మహామృత్యుంజయ మంత్రం"], answer: 0 }
 ];
 
@@ -37,10 +36,11 @@ const questions = [
 let selectedQuestions = []; // క్విజ్‌లో ప్రదర్శించబడే 5 ప్రశ్నలు
 const TOTAL_QUESTIONS_TO_DISPLAY = 5;
 const PASS_SCORE = 3; // 5కి 3 మార్కులు ఉత్తీర్ణత మార్కుగా నిర్ణయించబడింది
-const appRoot = document.getElementById('quizApp'); // మీ HTML లో ఈ ID ఉండాలి
+// ఇది మీ HTML లో ఉండాలి: <div id="quizApp"></div>
+const appRoot = document.getElementById('quizApp'); 
 
 // =================================================================
-// 3. UI/UX మరియు స్టైలింగ్ ఫంక్షన్లు
+// 3. UI/UX మరియు స్టైలింగ్ ఫంక్షన్లు (మెరుగుపరచబడింది)
 // =================================================================
 
 // డైనమిక్‌గా CSS స్టైల్స్‌ను జోడించడం
@@ -57,20 +57,20 @@ function applyStyles() {
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
             line-height: 1.6;
-            padding: 20px;
+            padding: 10px; /* మొబైల్ కోసం ప్యాడింగ్‌ను తగ్గించడం */
         }
         #quizApp {
-            max-width: 700px;
+            max-width: 600px; /* మొబైల్ కోసం వెడల్పు తగ్గించడం */
             margin: 0 auto;
             background: #fff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 12px;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         .header-title {
             color: var(--primary-color);
             text-align: center;
-            font-size: 2.2rem;
+            font-size: 1.8rem; /* మొబైల్ కోసం ఫాంట్ సైజు తగ్గించడం */
             margin-bottom: 10px;
             border-bottom: 3px solid var(--secondary-color);
             padding-bottom: 10px;
@@ -78,51 +78,55 @@ function applyStyles() {
         .section-description {
             text-align: center;
             color: #555;
-            margin-bottom: 30px;
-            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-size: 1rem;
         }
         .question-item {
             background-color: var(--secondary-color);
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-left: 5px solid var(--primary-color);
         }
         .question-text {
             font-weight: 700;
             color: var(--primary-color);
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-size: 1rem;
         }
         .option-label {
-            display: block;
+            display: flex; /* ఫ్లెక్స్ లేఅవుట్ */
+            align-items: center;
             background-color: #ffffff;
             border: 1px solid #ccc;
             padding: 10px;
             margin-bottom: 8px;
             border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: background-color 0.2s, border-color 0.2s;
         }
         .option-label:hover {
             background-color: #f0f0f0;
+            border-color: var(--primary-color);
         }
         .option-input[type="radio"] {
             margin-right: 10px;
             accent-color: var(--primary-color);
+            min-width: 20px; /* రేడియో బటన్ కోసం కనీస పరిమాణం */
+            min-height: 20px;
         }
         .submit-button {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 25px;
-            font-size: 1.1rem;
+            padding: 10px 20px;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 50px;
             cursor: pointer;
             display: block;
             width: 100%;
-            margin-top: 30px;
+            margin-top: 25px;
             transition: background-color 0.3s;
         }
         .submit-button:hover {
@@ -131,41 +135,54 @@ function applyStyles() {
         /* సర్టిఫికెట్ స్టైల్స్ */
         #certificateContainer {
             text-align: center;
-            padding: 30px;
-            border: 5px double var(--primary-color);
+            padding: 25px 15px; /* మొబైల్ కోసం ప్యాడింగ్‌ను సర్దుబాటు చేయడం */
+            border: 4px double var(--primary-color);
             background: #fffafa;
             border-radius: 10px;
             margin-top: 20px;
         }
         .score-display {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 900;
-            margin: 15px 0;
+            margin: 10px 0;
         }
         .pass { color: var(--success-color); }
         .fail { color: var(--failure-color); }
         .certificate-header {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--primary-color);
             margin-bottom: 10px;
         }
         .certificate-buttons {
-            margin-top: 25px;
+            margin-top: 20px;
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            flex-direction: column; /* మొబైల్ కోసం బటన్లను నిలువుగా మార్చడం */
+            gap: 10px;
         }
         .action-btn {
             background-color: var(--success-color);
             color: white;
-            padding: 10px 20px;
+            padding: 10px 15px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: opacity 0.3s;
+            width: 100%; /* మొబైల్‌లో పూర్తి వెడల్పు */
         }
         .action-btn.share {
             background-color: #25D366; /* WhatsApp Green */
+        }
+
+        /* డెస్క్‌టాప్ కోసం మీడియా క్వెరీ */
+        @media (min-width: 601px) {
+            .header-title { font-size: 2.2rem; }
+            .score-display { font-size: 2.5rem; }
+            .certificate-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .action-btn {
+                width: auto;
+            }
         }
     `;
     document.head.appendChild(style);
@@ -177,12 +194,16 @@ function applyStyles() {
 
 // క్విజ్ UI ని సృష్టించడం
 function createQuizUI() {
+    if (!appRoot) {
+        console.error("Error: 'quizApp' ID తో కూడిన మూలకం కనుగొనబడలేదు.");
+        return;
+    }
     appRoot.innerHTML = ''; // పాత కంటెంట్‌ను తొలగించండి
 
     // హెడర్
     const header = document.createElement('h2');
     header.className = 'header-title';
-    header.innerHTML = ` క్విజ్`;
+    header.innerHTML = `శ్రీ యాజ్ఞవల్క్య క్విజ్`;
     appRoot.appendChild(header);
 
     const desc = document.createElement('p');
@@ -210,16 +231,17 @@ function createQuizUI() {
         qP.innerText = `${idx + 1}. ${item.q}`;
         qDiv.appendChild(qP);
 
+        // ఆప్షన్లను షఫుల్ చేయవచ్చు (ఐచ్ఛికం)
+        // const shuffledOptions = shuffleOptions([...item.options], item.answer);
+
         item.options.forEach((opt, optIdx) => {
             const label = document.createElement('label');
             label.className = 'option-label';
-            label.setAttribute('for', `q${idx}_opt${optIdx}`);
-
+            
             const radio = document.createElement('input');
             radio.type = 'radio';
             radio.name = `question${idx}`;
             radio.value = optIdx;
-            radio.id = `q${idx}_opt${optIdx}`;
             radio.className = 'option-input';
 
             label.appendChild(radio);
@@ -254,7 +276,6 @@ function evaluateQuiz() {
 function showResults(score) {
     appRoot.innerHTML = ''; // క్విజ్ ప్రశ్నలను తొలగించండి
 
-    const percentage = (score / TOTAL_QUESTIONS_TO_DISPLAY) * 100;
     const isPassed = score >= PASS_SCORE;
 
     const resultMessage = isPassed
@@ -265,10 +286,12 @@ function showResults(score) {
     const certContainer = document.createElement('div');
     certContainer.id = 'certificateContainer';
 
+    // ఇమేజ్ 2.jpg స్థానంలో ఒక ప్లేస్‌హోల్డర్ వాడబడుతోంది, మీకు ఇమేజ్ ఉంటే అది కనిపిస్తుంది.
     certContainer.innerHTML = `
         <h3 class="certificate-header">శ్రీ యాజ్ఞవల్క్య క్విజ్ - ఫలితం</h3>
+        <img src="Image 2.jpg" alt="యాజ్ఞవల్క్య" style="width: 80px; margin: 10px 0; border-radius: 50%; object-fit: cover;"/>
     
-        <p style="color: ${isPassed ? 'var(--success-color)' : 'var(--failure-color)'}; font-weight: 600;">
+        <p style="color: ${isPassed ? 'var(--success-color)' : 'var(--failure-color)'}; font-weight: 600; font-size: 1.1rem;">
             ${resultMessage}
         </p>
         <p class="score-display ${isPassed ? 'pass' : 'fail'}">
@@ -278,7 +301,7 @@ function showResults(score) {
             క్విజ్‌లో పాల్గొన్నందుకు ధన్యవాదాలు! మీ జ్ఞానాన్ని అభినందిస్తున్నాము.
         </p>
         <footer style="margin-top: 20px; font-size: 0.9rem; color: #888;">
-         ఓం పూర్ణమద: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే ||
+            ఓం పూర్ణమద: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే ||
         </footer>
     `;
     appRoot.appendChild(certContainer);
@@ -287,14 +310,14 @@ function showResults(score) {
     const actionButtons = document.createElement('div');
     actionButtons.className = 'certificate-buttons';
 
-    // 1. డౌన్‌లోడ్ బటన్
+    // 1. డౌన్‌లోడ్ బటన్ (html2canvas అవసరం)
     const downloadBtn = document.createElement('button');
     downloadBtn.className = 'action-btn';
     downloadBtn.innerText = 'సర్టిఫికెట్ డౌన్‌లోడ్ (Image)';
     downloadBtn.onclick = () => downloadCertificate(certContainer);
     actionButtons.appendChild(downloadBtn);
 
-    // 3. మళ్లీ ప్రయత్నించండి బటన్
+    // 2. మళ్లీ ప్రయత్నించండి బటన్
     const retryBtn = document.createElement('button');
     retryBtn.className = 'action-btn';
     retryBtn.style.backgroundColor = '#007bff';
@@ -306,18 +329,23 @@ function showResults(score) {
 }
 
 // =================================================================
-// 5. సర్టిఫికెట్ & షేరింగ్ ఫంక్షన్లు
+// 5. సర్టిఫికెట్ & షేరింగ్ ఫంక్షన్లు (మెరుగుపరచబడింది)
 // =================================================================
 
 // సర్టిఫికెట్‌ను ఇమేజ్‌గా డౌన్‌లోడ్ చేయడం (html2canvas అవసరం)
 function downloadCertificate(element) {
+    // html2canvas ఉందో లేదో తనిఖీ చేయండి
     if (typeof html2canvas === 'undefined') {
-        alert("దయచేసి 'html2canvas' లైబ్రరీని మీ HTML లో జోడించండి.");
+        alert("సర్టిఫికెట్ డౌన్‌లోడ్ చేయడానికి 'html2canvas' లైబ్రరీ అవసరం. దయచేసి దానిని మీ HTML లో చేర్చండి.");
+        console.error("HTML2Canvas library not found. Please include: <script src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'></script>");
         return;
     }
 
-    // డౌన్‌లోడ్ కోసం సర్టిఫికెట్ ప్రాంతాన్ని ఎంచుకోవడం
-    html2canvas(element, { scale: 2 }).then(canvas => {
+    // డౌన్‌లోడ్ కోసం సర్టిఫికెట్ ప్రాంతాన్ని ఇమేజ్‌గా మార్చడం
+    html2canvas(element, { 
+        scale: 2, // మెరుగైన నాణ్యత కోసం స్కేల్‌ను పెంచడం
+        logging: false 
+    }).then(canvas => {
         const image = canvas.toDataURL('image/png');
         const link = document.createElement('a');
         link.href = image;
@@ -325,6 +353,7 @@ function downloadCertificate(element) {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        alert("సర్టిఫికెట్ విజయవంతంగా డౌన్‌లోడ్ చేయబడింది!");
     });
 }
 
