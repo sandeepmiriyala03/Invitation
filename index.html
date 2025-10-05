@@ -108,8 +108,10 @@ body {
 @media (min-width: 781px) {
     /* Center the title on large screens when no logo is present */
     .site-title { text-align: center; }
-}
-
+    
+  .quiz-icon {
+        font-size: 40px;
+    }
 
 /* --- Global & Mobile-First Styles (Screens up to 780px) --- */
 
@@ -1536,26 +1538,6 @@ audio#ttdaudio {
     margin-bottom: 20px;
 }
 
-/* హెడర్ కంటైనర్‌ను కేంద్రీకరించడం */
-.section-header-container {
-    text-align: center;
-}
-
-/* సెక్షన్ టైటిల్ స్టైల్ */
-.section-title {
-    /* మీరు ఇచ్చిన రంగును ఉపయోగిస్తున్నాం */
-    color: #4A148C; 
-    font-size: 26px; /* టైటిల్ సైజ్ పెంచడం */
-    font-weight: 700;
-    
-    /* ఐకాన్ మరియు టెక్స్ట్ పక్కపక్కన సరిగ్గా ఉండేలా */
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    
-    /* కొంచెం నీడ (Subtle Shadow) */
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); 
-}
 
 /* ఐకాన్ స్టైల్స్ */
 .quiz-icon {
@@ -1566,12 +1548,8 @@ audio#ttdaudio {
 
 /* పెద్ద స్క్రీన్‌ల కోసం టైటిల్ సైజ్ పెంచడం */
 @media (min-width: 768px) {
-    .section-title {
-        font-size: 36px;
-    }
-    .quiz-icon {
-        font-size: 40px;
-    }
+    
+  
 }
     </style>
 </head>
