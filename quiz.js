@@ -289,8 +289,7 @@ function showResults(score) {
     // ఇమేజ్ 2.jpg స్థానంలో ఒక ప్లేస్‌హోల్డర్ వాడబడుతోంది, మీకు ఇమేజ్ ఉంటే అది కనిపిస్తుంది.
     certContainer.innerHTML = `
         <h3 class="certificate-header">శ్రీ యాజ్ఞవల్క్య క్విజ్ - ఫలితం</h3>
-        <img src="Image 2.jpg" alt="యాజ్ఞవల్క్య" style="width: 80px; margin: 10px 0; border-radius: 50%; object-fit: cover;"/>
-    
+
         <p style="color: ${isPassed ? 'var(--success-color)' : 'var(--failure-color)'}; font-weight: 600; font-size: 1.1rem;">
             ${resultMessage}
         </p>
