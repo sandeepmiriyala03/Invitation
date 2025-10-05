@@ -182,7 +182,7 @@ function createQuizUI() {
     // హెడర్
     const header = document.createElement('h2');
     header.className = 'header-title';
-    header.innerHTML = `శ్రీ యాజ్ఞవల్క్య క్విజ్`;
+    header.innerHTML = ` క్విజ్`;
     appRoot.appendChild(header);
 
     const desc = document.createElement('p');
