@@ -276,6 +276,9 @@ function showResults(score) {
         <p style="font-style: italic; color: #555;">
             క్విజ్‌లో పాల్గొన్నందుకు ధన్యవాదాలు! మీ జ్ఞానాన్ని అభినందిస్తున్నాము.
         </p>
+        <footer style="margin-top: 20px; font-size: 0.9rem; color: #888;">
+         ఓం పూర్ణమద: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే 
+        </footer>
     `;
     appRoot.appendChild(certContainer);
 
