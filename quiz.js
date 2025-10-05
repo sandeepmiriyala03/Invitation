@@ -267,7 +267,7 @@ function showResults(score) {
 
     certContainer.innerHTML = `
         <h3 class="certificate-header">శ్రీ యాజ్ఞవల్క్య క్విజ్ - ఫలితం</h3>
-        <image src="Image 2.jpg" alt="Om Symbol" style="width: 80px; margin: 10px 0;"/>
+        <image src="Image 2.jpg" alt=" యాజ్ఞవల్క్య" style="width: 80px; margin: 10px 0;"/>
     
         <p style="color: ${isPassed ? 'var(--success-color)' : 'var(--failure-color)'}; font-weight: 600;">
             ${resultMessage}
