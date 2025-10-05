@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Telugu:wght@400;700&family=Roboto+Slab:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css">
   <link rel="manifest" href="manifest.json" />
     <link rel="icon" type="image/png" sizes="32x32" href="Image 2.jpg">
@@ -1526,7 +1527,52 @@ audio#ttdaudio {
   margin-top: 6px;
   margin-left: 36px; /* aligns text nicely under the heading and icon */
 }
+/* క్విజ్ సెక్షన్ కంటైనర్ స్టైల్ */
+.quiz-section {
+    padding: 20px;
+    background-color: #f8f9fa; /* లేత బూడిద నేపథ్యం */
+    border-bottom: 3px solid #6A1B9A; /* దిగువన రంగుల బోర్డర్ */
+    border-radius: 8px 8px 0 0; 
+    margin-bottom: 20px;
+}
 
+/* హెడర్ కంటైనర్‌ను కేంద్రీకరించడం */
+.section-header-container {
+    text-align: center;
+}
+
+/* సెక్షన్ టైటిల్ స్టైల్ */
+.section-title {
+    /* మీరు ఇచ్చిన రంగును ఉపయోగిస్తున్నాం */
+    color: #4A148C; 
+    font-size: 26px; /* టైటిల్ సైజ్ పెంచడం */
+    font-weight: 700;
+    
+    /* ఐకాన్ మరియు టెక్స్ట్ పక్కపక్కన సరిగ్గా ఉండేలా */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    /* కొంచెం నీడ (Subtle Shadow) */
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); 
+}
+
+/* ఐకాన్ స్టైల్స్ */
+.quiz-icon {
+    /* మీరు ఇచ్చిన రంగు మరియు మార్జిన్ ఇక్కడ సెట్ చేయబడ్డాయి */
+    font-size: 32px; 
+    /* color: #6A1B9A; ఈ రంగు ఇప్పటికే HTML లో ఉంది, కానీ ఇక్కడ పెట్టి ఓవర్‌రైడ్ చేయవచ్చు */
+}
+
+/* పెద్ద స్క్రీన్‌ల కోసం టైటిల్ సైజ్ పెంచడం */
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 36px;
+    }
+    .quiz-icon {
+        font-size: 40px;
+    }
+}
     </style>
 </head>
 <body>
@@ -1553,15 +1599,19 @@ audio#ttdaudio {
     </header>
     </div>
     <nav id="nav-menu" aria-label="ముఖ్య నావిగేషన్">
-     
-
         <a href="#about" class="nav-link">
             <span class="material-icons nav-icon" style="margin-right: 8px; color: #8e24aa;">
                 workspace_premium
             </span>
-            యాజ్ఞవల్క్య మహర్షి
+            శ్రీ యాజ్ఞవల్క్య 
         </a>
-        <a href="#main" class="nav-link">
+                <a href="#Quiz" class="nav-link">
+            <span class="material-icons nav-icon" style="margin-right: 8px;">   
+                quiz 
+            </span>
+            క్విజ్
+        </a>
+                <a href="#main" class="nav-link">
             <span class="material-icons nav-icon" style="margin-right: 8px;">
                 home
             </span>
@@ -1688,6 +1738,11 @@ audio#ttdaudio {
     </div>
 </section>
 
+<section id="Quiz" tabindex="0" class="main-section quiz-section">     
+       <div id="quizApp">
+        </div>
+</section>
+
 <section id="main" tabindex="0" class="main-section">
 
     <div class="title-block">
@@ -1701,7 +1756,6 @@ audio#ttdaudio {
             తూగో॥జిల్లా(ఆం.ప్ర.) (రి.నెం.3/57)
         </p>
     </div>
-
     <div class="logo-block">
         <div class="image-flex-container">
             <img src="32px-Om_symbol.svg.png" alt="ఓం లోగో" class="om-logo" />
@@ -1712,16 +1766,13 @@ audio#ttdaudio {
             ఓం కణ్వ గురువేనమ:
         </p>
     </div>
-
     <h3 class="event-title">
         శ్రీ మైత్రేయీ కాత్యాయనీ సమేత శ్రీ యాజ్ఞవల్క్య ఋషి సార్వభౌమ జయంత్యుత్సవము
     </h3>
-
     <div class="quote-block">
         ఓం పూర్ణమద: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే<br>
         పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే
     </div>
-
     <h3 class="details-header">
         <span class="material-icons header-icon">info</span> జయంతి ఉత్సవ వివరాలు:
     </h3>
@@ -1746,10 +1797,7 @@ audio#ttdaudio {
             శ్రీ వేంకటేశ్వరస్వామివారి దేవాలయం,<br> టి.టి.డి. కళ్యాణం మండపం ప్రక్కన,<br> పిఠాపురం- 533 450 ,ఆంధ్రప్రదేశ్.
         </p>
     </div>
-
 </section>
-
-
 <section id="program-details" tabindex="0" class="program-section">
     
     <h2 class="program-header">
@@ -1765,10 +1813,9 @@ audio#ttdaudio {
         <li class="program-item archanai-item">
             <p class="program-item-text">
                 <span class="program-item-title">సహస్రనామార్చన:</span> 
-                స్వర్గీయ శ్రీమాన్ పెరియాల హనుమంతా చార్యులువారి కుమారులు శ్రీరామకృష్ణమాచార్యులువారిచే స్వామివారికి సహస్రనామార్చన. తదుపరి ప్రసాద వినియోగం జరుగును.
+                స్వర్గీయ శ్రీమాన్ పెరియాల హనుమంతా చార్యులువారి కుమారులు శ్రీ రామకృష్ణమాచార్యులువారిచే స్వామివారికి సహస్రనామార్చన. తదుపరి ప్రసాద వినియోగం జరుగును.
             </p>
         </li>
-        
         <li class="program-item prasangam-item">
             <p class="program-item-text">
                 <span class="program-item-title">ముఖ్య ప్రసంగం:</span> 
@@ -1787,7 +1834,6 @@ audio#ttdaudio {
             <b class="gift-highlight">శ్రీ యాజ్ఞవల్క్య మహర్షి వారి తామ్ర డాలరు</b> ఇవ్వబడును.
         </p>
     </div>
-    
     <div class="next-year-block">
         <p class="next-year-header">
             <span class="material-icons program-icon">next_plan</span> వచ్చే సంవత్సరం జయంతి తేదీ:
@@ -1834,16 +1880,9 @@ audio#ttdaudio {
     <source src="శ్రీ యాజ్ఞవల్క్యు సుప్రభాత స్తోత్రం.mp3" type="audio/mpeg">
   </audio>
 </h3>
-
-<a href="శ్రీ యాజ్ఞవల్క్యు సుప్రభాత స్తోత్రం.mp3" download="శ్రీ యాజ్ఞవల్క్యు సుప్రభాత స్తోత్రం.mp3"" style="text-decoration:none; color:#6a1b9a; font-weight:bold;">
-  <span class="material-icons">download</span>శ్రీ యాజ్ఞవల్క్యు సుప్రభాత స్తోత్రం
-</a>
-
-
     <h3 class="media-subheader">
         <span class="material-icons subheader-icon">videocam</span> వీడియో:
-    </h3>
-    
+    </h3>  
   <div id="video-container" class="video-responsive">
     <video id ="ttdvideo"
         src="TTD Video.mp4" 
@@ -1851,23 +1890,19 @@ audio#ttdaudio {
         controls 
         preload="metadata" 
         poster="path/to/your/poster/image.jpg"
-        class="video-player-element"
-    >
+        class="video-player-element">
         Your browser does not support the video tag.
     </video>
 </div>
-
     <h3 class="media-subheader">
         <span class="material-icons subheader-icon">image</span> చిత్రాలు:
     </h3>
-<div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ">
-    
+<div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ"> 
   <div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ" id="dynamic-gallery">
     </div>
-
 <script>
-    // Call the JavaScript function below to populate the gallery when the page loads.
-    document.addEventListener('DOMContentLoaded', generateSimpleGallery);
+
+
 </script>
 </div>
 </section>
@@ -1975,7 +2010,7 @@ audio#ttdaudio {
 <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
 
 <script type="text/javascript">
-   document.getElementById('currentYear').textContent = new Date().getFullYear();
+ 
 
 /**
  * Smoothly scrolls the viewport to the top of the page.
@@ -2111,6 +2146,8 @@ function setupMobileMenuToggle() {
     }
 document.addEventListener('DOMContentLoaded', setupMobileMenuToggle);
 document.addEventListener('DOMContentLoaded', generateSimpleGallery);
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+
  document.addEventListener('DOMContentLoaded', () => {
     const video = document.getElementById('ttdvideo');
     if (video) {
@@ -2122,5 +2159,6 @@ document.addEventListener('DOMContentLoaded', generateSimpleGallery);
 
 </script>
   <script src="pwa.js"></script>
+  <script src="quiz.js"></script> 
 </body>
 </html>
