@@ -1586,44 +1586,118 @@ audio#ttdaudio {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* తేలికైన నీడ */
 }
-
-/* ఆడియో కంట్రోల్స్ స్టైలింగ్ (సబ్ హెడర్ లోపల ఉన్న ఆడియో ట్యాగ్) */
-.media-subheader audio {
-  width: 100%; /* మొబైల్ కోసం పూర్తి వెడల్పు, కానీ h6 max-width కారణంగా పరిమితం */
-  max-width: 200px; 
-  height: 30px;
+/*
+ * 1. బాహ్య కంటైనర్ (External Container) స్టైలింగ్
+ * మొత్తం ఆడియో బ్లాక్‌ను కుడి వైపుకు సమలేఖనం చేస్తుంది మరియు అంచులను అందిస్తుంది.
+ */
+.audio-feature-card {
+  /* మొత్తం బ్లాక్‌ను కుడి వైపుకు అలైన్ చేయడానికి Flexbox వాడకం */
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; 
+  padding: 15px 20px; /* అంచుల నుండి కొద్దిగా ప్యాడింగ్ */
+  box-sizing: border-box;
+  margin-top: 20px; /* పైన ఉన్న కంటెంట్‌తో గ్యాప్ కోసం */
 }
 
-/* llm పారాగ్రాఫ్ స్టైలింగ్ */
+/*
+ * 2. ఆడియో మరియు వివరణ టెక్స్ట్ యొక్క అంతర్గత ర్యాపర్ (Card Wrapper)
+ */
+.audio-metadata {
+  max-width: 480px; /* వెడల్పు కొద్దిగా పెంచబడింది */
+  min-width: 320px;
+  /* మొత్తం బ్లాక్‌కి అందమైన కార్డ్ లాంటి లుక్ ఇవ్వడానికి */
+  background-color: #ffffff; /* కార్డ్ నేపథ్యం తెలుపు */
+  border-radius: 12px; /* కొద్దిగా ఎక్కువ రౌండ్‌నెస్ */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* లోతైన, మృదువైన నీడ */
+  border: 1px solid #e0e0e0; /* తేలికైన అంచు */
+  overflow: hidden; /* ప్యాడింగ్ media-subheader లో ఉంది */
+  text-align: right; 
+}
+
+/*
+ * 3. media-subheader (టైటిల్ మరియు ఆడియో కంటైనర్)
+ */
+.media-subheader {
+  /* H6 ఎలిమెంట్ లోపల ఆడియో మరియు టెక్స్ట్ అలైన్ చేయడానికి */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  gap: 15px; /* గ్యాప్ పెంచబడింది */
+  font-family: 'Noto Sans Telugu', sans-serif;
+  font-size: 1.1rem; 
+  font-weight: 700; /* కొంచెం మందంగా */
+  color: #4A148C;
+  background-color: #EDE7F6; /* లైట్ లావెండర్ నేపథ్యం */
+  padding: 15px 20px;
+  border-bottom: 2px solid #D1C4E9; /* టైటిల్ మరియు పారా మధ్య విభజన */
+  margin-bottom: 0;
+  border-top-left-radius: 12px; 
+  border-top-right-radius: 12px; 
+}
+
+/* టెక్స్ట్ మరియు ఐకాన్ మధ్య గ్యాప్ */
+.media-subheader .subheader-icon {
+  margin-right: -5px; 
+  color: #6A1B9A; /* ఐకాన్ రంగు */
+}
+
+/*
+ * 4. ఆడియో కంట్రోల్స్ స్టైలింగ్
+ */
+.media-subheader audio {
+  width: 100%; 
+  max-width: 220px; /* ఆడియో కంట్రోల్స్ యొక్క గరిష్ట వెడల్పు */
+  height: 35px; /* ఎత్తు కొద్దిగా పెంచబడింది */
+  margin-left: 10px;
+  /* కంట్రోల్స్‌ను మరింత మృదువుగా చూపడానికి */
+  border-radius: 5px;
+}
+
+/*
+ * 5. llm పారాగ్రాఫ్ స్టైలింగ్ (వివరణ టెక్స్ట్)
+ */
 #llm {
   font-family: 'Arial', sans-serif;
   font-size: 0.85rem;
-  color: #666;
-  margin-top: 5px;
-  padding-right: 5px; /* కుడి వైపున కొద్దిగా ప్యాడింగ్ */
-  text-align: right; /* టెక్స్ట్ ను కుడి వైపుకు అలైన్ చేయండి */
-  line-height: 1.4;
+  color: #777;
+  margin: 10px 0 10px 0;
+  padding: 5px 20px 10px 20px; /* ప్యాడింగ్ స్థిరంగా ఉంచడం */
+  text-align: right; 
+  line-height: 1.5;
 }
 
-/* మొబైల్ రెస్పాన్సివ్నెస్ */
-@media (max-width: 600px) {
+/*
+ * 6. మొబైల్ రెస్పాన్సివ్నెస్ కోసం మీడియా క్వెరీ
+ * చిన్న స్క్రీన్‌లలో కేంద్రంలో (center) మరియు నిలువుగా (vertical) పేర్చడానికి
+ */
+@media (max-width: 650px) {
+    .audio-feature-card {
+        justify-content: center; /* మొబైల్‌లో కేంద్రానికి తరలించండి */
+        padding: 10px;
+    }
     .audio-metadata {
         max-width: 95%; /* మొబైల్‌లో దాదాపు పూర్తి వెడల్పు */
         min-width: unset;
-    }
-
-    .audio-feature-card {
-        padding: 5px; 
-        /* మొబైల్‌లో సెంటర్ లేదా కుడి వైపున ఉంచవచ్చు */
-        justify-content: center; 
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .media-subheader {
         font-size: 1.0rem;
-        /* మొబైల్‌లో నిలువుగా (vertical) పేర్చడానికి */
         flex-direction: column; 
-        align-items: flex-start;
-        padding: 10px;
+        align-items: flex-start; /* టెక్స్ట్ ఎడమ వైపుకు */
+        padding: 10px 15px;
+    }
+    
+    .media-subheader audio {
+        max-width: 100%;
+        margin-left: 0;
+        margin-top: 8px; /* ఐకాన్ నుండి ఆడియోకు గ్యాప్ */
+    }
+
+    #llm {
+        text-align: left; /* మొబైల్‌లో టెక్స్ట్ ఎడమ వైపుకు అలైన్ చేయండి */
+        padding: 5px 15px 10px 15px;
     }
 }
     </style>
