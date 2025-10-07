@@ -1,5 +1,5 @@
 // =================================================================
-// 1. ప్రశ్నల డేటా (Data)
+// 1. ప్రశ్నల డేటా (Data) - అసలు డేటాలో మార్పు లేదు
 // =================================================================
 
 const questions = [
@@ -31,10 +31,9 @@ const questions = [
 // మొదటి 5 ప్రశ్నలను మాత్రమే తీసుకుంటున్నాము
 const selectedQuestions = questions.slice(0, 5);
 const TOTAL_QUESTIONS_TO_DISPLAY = 5;
-const PASS_SCORE = 3; // 5కి 3 మార్కులు పాస్ కావడానికి
+const PASS_SCORE = 1; // 5కి 3 మార్కులు పాస్ కావడానికి
 let userName = "అజ్ఞాత భక్తుడు"; 
 const appRoot = document.getElementById('quizApp'); 
-// గమనిక: 'quizSection' అనే ID HTMLలో ఉండాలి లేదా తొలగించబడాలి. ఇక్కడ దానిని ఉపయోగించకుండా ఉండటమే మంచిది.
 
 // =================================================================
 // 2. స్టైల్స్‌ను డైనమిక్‌గా జోడించే ఫంక్షన్ (CSS is embedded here for simplicity)
@@ -50,12 +49,14 @@ function applyStyles() {
             --failure-color: #dc3545; 
             --info-color: #17a2b8; 
             --shadow-heavy: 0 10px 25px rgba(0, 0, 0, 0.2);
+            --cert-bg: #fffbf5; /* సర్టిఫికెట్ కోసం లేత క్రీమ్ */
         }
         body {
             font-family: 'Arial', sans-serif;
             background-color: #f8f9fa;
             line-height: 1.6;
             padding: 10px;
+            margin: 0;
         }
 
         #quizApp {
@@ -73,12 +74,12 @@ function applyStyles() {
             margin-bottom: 5px;
             padding-bottom: 10px;
             font-weight: 800;
+            border-bottom: 2px solid var(--secondary-color);
         }
         .section-description {
             color: #555;
             margin-bottom: 30px;
             font-size: 1.1rem;
-            border-bottom: 1px solid var(--secondary-color);
             padding-bottom: 15px;
         }
         
@@ -197,35 +198,57 @@ function applyStyles() {
         }
 
         /* ======================================= */
-        /* సర్టిఫికెట్ డిజైన్ (రెస్పాన్సివ్ & కాంపాక్ట్) */
+        /* సర్టిఫికెట్ డిజైన్ (క్షితిజ సమాంతరం & రెస్పాన్సివ్) */
         /* ======================================= */
         #certificateContainer {
-            border: 8px solid transparent; /* కాంపాక్ట్ బార్డర్ */
+            width: 90%; 
+            max-width: 850px; /* డెస్క్‌టాప్‌లో విస్తరించబడింది */
+            margin: 30px auto;
+            border: 8px solid transparent; 
             border-image: linear-gradient(45deg, var(--primary-color), var(--info-color)) 1; 
-            padding: 20px; /* ప్యాడింగ్ తగ్గించబడింది */
+            padding: 20px; 
             border-radius: 10px;
-            margin-top: 20px;
-            background: #fff; 
+            background: var(--cert-bg); 
             box-shadow: var(--shadow-heavy); 
             text-align: center;
         }
+
+        /* ప్రత్యేకంగా డౌన్‌లోడ్ కోసం (html2canvas టార్గెట్) */
+        .downloading #certificateContainer {
+            /* ఇమేజ్ జనరేషన్ కోసం ప్యాడింగ్ మరియు ఫాంట్ సైజులను కొద్దిగా తగ్గించండి */
+            padding: 15px; 
+        }
+        .downloading .certificate-header {
+            font-size: 1.5rem !important;
+        }
+        .downloading .user-name-display {
+            font-size: 2.0rem !important; 
+            padding: 8px 15px !important;
+        }
+        .downloading .score-box {
+            padding: 15px !important;
+        }
+        .downloading .score-display {
+            font-size: 2.2rem !important;
+        }
+
         .certificate-header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px dashed #ccc;
+            border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         .certificate-header {
-            font-size: 1.6rem; /* కొంచెం తగ్గించబడింది */
+            font-size: 1.8rem; 
             color: var(--primary-color);
             font-weight: 700;
             flex-grow: 1;
             text-align: center;
         }
         .datetime-display {
-            font-size: 0.85rem; /* చాలా చిన్నది */
+            font-size: 0.85rem; 
             color: #555;
             font-style: italic;
             text-align: right;
@@ -233,66 +256,88 @@ function applyStyles() {
             width: 150px;
         }
         .user-name-display {
-            font-size: 2.2rem; /* మొబైల్ ఆప్టిమైజ్డ్ */
+            font-size: 2.5rem; /* మొబైల్ ఆప్టిమైజ్డ్ */
             color: #333;
             background-color: var(--secondary-color);
-            padding: 10px 20px;
+            padding: 10px 25px;
             border-radius: 8px;
             margin: 15px auto;
             display: inline-block;
             font-weight: 900;
             text-transform: capitalize;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
         }
         .score-box {
-            padding: 20px; /* ప్యాడింగ్ తగ్గించబడింది */
+            padding: 20px; 
             border-radius: 15px;
             margin: 20px auto 15px;
             border: 1px solid var(--info-color);
             box-shadow: 0 0 10px rgba(23, 162, 184, 0.3); 
-            max-width: 280px;
+            max-width: 300px;
+            background-color: #fefefe;
         }
         .score-display {
-            font-size: 2.5rem; /* కొంచెం తగ్గించబడింది */
+            font-size: 3.0rem; 
             font-weight: 900;
         }
         .result-level {
-            font-size: 1.2rem; 
+            font-size: 1.3rem; 
+            font-weight: 700;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
         }
         .pass-text { color: var(--success-color); }
         .fail-text { color: var(--failure-color); }
         #certificateContainer footer {
-            margin-top: 10px; 
-            padding-top: 8px;
-            border-top: 1px solid #eee;
-            font-size: 0.8rem;
-            color: #888;
+            margin-top: 15px; 
+            padding-top: 10px;
+            border-top: 2px dashed var(--primary-color);
+            font-size: 0.9rem;
+            color: #444;
+            font-weight: 500;
+            line-height: 1.4;
         }
         .certificate-buttons {
             margin-top: 25px;
             display: flex;
             flex-direction: row; 
             justify-content: center;
-            gap: 15px; /* గ్యాప్ తగ్గించబడింది */
+            gap: 15px; 
         }
         .action-btn {
-            padding: 12px 18px; /* ప్యాడింగ్ తగ్గించబడింది */
+            padding: 12px 18px; 
+            border: none;
+            color: white;
+            cursor: pointer;
             border-radius: 8px; 
             min-width: 180px;
             font-size: 1rem;
             font-weight: 600;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
         }
         .action-btn.download { background-color: var(--info-color); }
+        .action-btn.download:hover { background-color: #117a8b; transform: translateY(-2px); }
         .action-btn.retry { background-color: var(--primary-color); }
+        .action-btn.retry:hover { background-color: #4A148C; transform: translateY(-2px); }
 
         /* మొబైల్ రెస్పాన్సివ్నెస్ */
-        @media (max-width: 650px) {
+        @media (max-width: 768px) {
+            #quizApp {
+                padding: 15px;
+            }
             .header-title { font-size: 1.8rem; }
+            .section-description { font-size: 1rem; }
             
+            /* సర్టిఫికెట్ మొబైల్ */
+            #certificateContainer {
+                padding: 15px;
+                max-width: 95%;
+            }
             .certificate-header-container {
                 flex-direction: column;
                 align-items: center;
+                border-bottom: 1px solid var(--primary-color);
             }
             .certificate-header {
                 font-size: 1.5rem;
@@ -302,8 +347,18 @@ function applyStyles() {
                 margin-top: 10px;
                 text-align: center;
                 width: 100%;
+                font-size: 0.75rem;
             }
-            .user-name-display { font-size: 1.8rem; }
+            .user-name-display { 
+                font-size: 1.8rem; 
+                padding: 8px 15px;
+            }
+            .score-display {
+                font-size: 2.5rem; 
+            }
+            .result-level {
+                font-size: 1.1rem;
+            }
 
             .certificate-buttons {
                 flex-direction: column; /* మొబైల్‌లో నిలువుగా */
@@ -329,19 +384,19 @@ function startQuiz() {
     appRoot.innerHTML = ''; 
     const header = document.createElement('h2');
     header.className = 'header-title';
-    header.innerHTML = `<i class="fas fa-book-open"></i> శ్రీ యాజ్ఞవల్క్య క్విజ్`;
+    header.innerHTML = `<i class="fas fa-book-open"></i> శ్రీ యాజ్ఞవల్క్య జ్ఞాన క్విజ్`;
     appRoot.appendChild(header);
 
     const desc = document.createElement('p');
     desc.className = 'section-description';
-    desc.innerText = `క్విజ్‌లో పాల్గొనేందుకు మీ పేరును దయచేసి నమోదు చేయండి.`;
+    desc.innerText = `క్విజ్‌లో పాల్గొనేందుకు మీ పేరును దయచేసి నమోదు చేయండి. (మొత్తం ప్రశ్నలు: ${TOTAL_QUESTIONS_TO_DISPLAY})`;
     appRoot.appendChild(desc);
 
     const inputContainer = document.createElement('div');
     inputContainer.className = 'name-input-container';
     const inputLabel = document.createElement('label');
     inputLabel.setAttribute('for', 'candidateName');
-    inputLabel.innerText = "మీ పేరు:";
+    inputLabel.innerHTML = '<i class="fas fa-user-edit"></i> మీ పేరు:';
     inputLabel.style.fontWeight = '600';
     inputContainer.appendChild(inputLabel);
 
@@ -349,7 +404,7 @@ function startQuiz() {
     nameInput.type = 'text';
     nameInput.id = 'candidateName';
     nameInput.className = 'name-input';
-    nameInput.placeholder = 'మీ పూర్తి పేరు';
+    nameInput.placeholder = 'ఉదా: రామకృష్ణ ';
     nameInput.setAttribute('required', '');
     inputContainer.appendChild(nameInput);
     appRoot.appendChild(inputContainer);
@@ -383,7 +438,7 @@ function createQuizUI() {
 
     const desc = document.createElement('p');
     desc.className = 'section-description';
-    desc.innerText = `${userName} గారూ, ఈ ${TOTAL_QUESTIONS_TO_DISPLAY} ప్రశ్నలకు సరైన సమాధానం ఎంచుకోండి.`;
+    desc.innerText = `${userName} గారూ, ఈ ${TOTAL_QUESTIONS_TO_DISPLAY} ప్రశ్నలకు సరైన సమాధానం ఎంచుకోండి. పాస్ మార్కులు: ${PASS_SCORE}`;
     appRoot.appendChild(desc);
 
     let firstRadioInput = null;
@@ -397,7 +452,7 @@ function createQuizUI() {
         const qP = document.createElement('p');
         qP.className = 'question-text';
         qP.id = `q-text-${idx}`;
-        qP.innerHTML = `${idx + 1}. ${item.q}`;
+        qP.innerHTML = `<i class="fas fa-angle-double-right" style="color:var(--info-color);"></i> ${idx + 1}. ${item.q}`;
         qDiv.appendChild(qP);
         
         item.options.forEach((opt, optIdx) => {
@@ -436,11 +491,22 @@ function createQuizUI() {
 
 function evaluateQuiz() {
     let score = 0;
+    let allAnswered = true;
+
     for (let i = 0; i < selectedQuestions.length; i++) {
         const sel = document.querySelector(`input[name=question${i}]:checked`);
-        if (sel && parseInt(sel.value) === selectedQuestions[i].answer) {
+        if (!sel) {
+            allAnswered = false;
+            break;
+        }
+        if (parseInt(sel.value) === selectedQuestions[i].answer) {
             score++;
         }
+    }
+
+    if (!allAnswered) {
+        alert("దయచేసి అన్ని ప్రశ్నలకు సమాధానం ఇవ్వండి.");
+        return;
     }
     showResults(score);
 }
@@ -453,49 +519,50 @@ function showResults(score) {
     appRoot.innerHTML = ''; 
 
     const isPassed = score >= PASS_SCORE;
-    const resultText = isPassed ? 'ఉత్తీర్ణత సాధించారు' : 'మరికొంత అభ్యాసం అవసరం';
-    const resultLevel = isPassed ? 'జ్ఞాన ధారిత' : 'జ్ఞాన అన్వేషి';
+    const resultText = isPassed ? 'జ్ఞాన ధారిత' : 'జ్ఞాన అన్వేషి';
+    const resultStatus = isPassed ? 'ఉత్తీర్ణత సాధించారు' : 'మరికొంత అభ్యాసం అవసరం';
 
     // తేదీ మరియు సమయం (కీ ఫీచర్)
     const now = new Date();
     const dateStr = now.toLocaleDateString('te-IN', { day: 'numeric', month: 'long', year: 'numeric' });
     const timeStr = now.toLocaleTimeString('te-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
 
+    // ఐకాన్‌లను మెరుగుపరచడం
+    const statusIcon = isPassed 
+        ? '<i class="fas fa-trophy" style="font-size: 3.5rem; color: #FFD700; margin-bottom: 10px; text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);"></i>' 
+        : '<i class="fas fa-lightbulb" style="font-size: 3.5rem; color: var(--info-color); margin-bottom: 10px; text-shadow: 0 0 10px rgba(23, 162, 184, 0.5);"></i>';
+    
+    const achievementText = isPassed 
+        ? `<p style="font-size: 1.0rem; color: var(--success-color); font-weight: 500;">మీరు శ్రీ యాజ్ఞవల్క్య మహర్షిపై అత్యుత్తమ జ్ఞానాన్ని ప్రదర్శించారు. ధన్యవాదాలు!</p>` 
+        : `<p style="font-size: 1.0rem; color: var(--failure-color); font-weight: 500;">మీరు లక్ష్యానికి చేరువలో ఉన్నారు! మళ్లీ ప్రయత్నించడం ద్వారా పూర్తి జ్ఞానాన్ని పొందవచ్చు.</p>`;
 
     const certContainer = document.createElement('div');
     certContainer.id = 'certificateContainer';
-
-    // పాస్ అయితే మెడల్, లేకపోతే మెదడు ఐకాన్
-    const statusIcon = isPassed 
-        ? '<i class="fas fa-medal" style="font-size: 3rem; color: var(--success-color); margin-bottom: 10px;"></i>' 
-        : '<i class="fas fa-brain" style="font-size: 3rem; color: var(--info-color); margin-bottom: 10px;"></i>';
-
     certContainer.innerHTML = `
         <div class="certificate-header-container">
-            <i class="fas fa-scroll" style="color: var(--primary-color); font-size: 1.5rem;"></i>
-            <h3 class="certificate-header">శ్రీ యాజ్ఞవల్క్య జ్ఞాన ధృవపత్రం</h3>
+            <i class="fas fa-scroll" style="color: var(--primary-color); font-size: 2rem;"></i>
+            <h3 class="certificate-header">శ్రీ యాజ్ఞవల్క్య జ్ఞానధృవపత్రం</h3>
             <div class="datetime-display">
                 <i class="far fa-calendar-alt"></i> తేదీ: ${dateStr}<br>
                 <i class="far fa-clock"></i> సమయం: ${timeStr}
             </div>
         </div>
-
         ${statusIcon}
-
-        <p style="font-size: 1.1rem; color: #555; margin-bottom: 10px;">ఈ క్విజ్‌లో పాల్గొన్నందుకు ధన్యవాదాలు:</p>
+        <p style="font-size: 1.1rem; color: #333; margin-bottom: 5px;">ఈ క్విజ్‌లో పాల్గొని, ఈ స్థాయిని సాధించినందుకు **ధన్యవాదాలు**:</p>
         <p class="user-name-display">${userName}</p>
-
-        <p class="result-level ${isPassed ? 'pass-text' : 'fail-text'}">స్థాయి: ${resultLevel}</p>
-
+        <p class="result-level ${isPassed ? 'pass-text' : 'fail-text'}">స్థాయి: **${resultText}**</p>
+        ${achievementText}
         <div class="score-box">
-            <p class="score-label">మీరు సాధించిన స్కోర్:</p>
-            <p class="score-display ${isPassed ? 'pass' : 'fail'}">
+            <p class="score-label" style="font-weight: 600; color:var(--primary-color);"><i class="fas fa-medal"></i> మీరు సాధించిన స్కోర్:</p>
+            <p class="score-display ${isPassed ? 'pass-text' : 'fail-text'}">
                 ${score} / ${TOTAL_QUESTIONS_TO_DISPLAY}
             </p>
-            <p style="font-weight: 600; color:${isPassed ? 'var(--success-color)' : 'var(--failure-color)'}">${resultText}</p>
+             <p style="font-weight: 600; color:${isPassed ? 'var(--success-color)' : 'var(--failure-color)'}; font-size:1.1rem;">**${resultStatus}**</p>
         </div>
 
-        <footer>ఓం పూర్ణమద:పూర్ణమిద:!పూర్ణాత్ పూర్ణాముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ!పూర్ణమేవావశిష్యతే||
+        <footer>
+         <i class="fas fa-signature" style="color:#aaa;"></i>ఈ పత్రం జ్ఞానాభివృద్ధి కృషికి గుర్తింపుగా ఇవ్వబడింది.
+            <br> ఓం పూర్ణమద:పూర్ణమిద:! పూర్ణాత్ పూర్ణాముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ! పూర్ణమేవావశిష్యతే||
         </footer>
     `;
     appRoot.appendChild(certContainer);
@@ -534,14 +601,22 @@ function downloadCertificate(element) {
         return; 
     }
 
+    // డౌన్‌లోడ్ కోసం సర్టిఫికెట్ కంటైనర్‌కు ప్రత్యేక తరగతిని జోడించండి (CSS ఆప్టిమైజేషన్ కోసం)
+    document.body.classList.add('downloading'); 
+    
     html2canvas(element, { 
-        scale: 3, // అధిక రిజల్యూషన్ కోసం పెంచబడింది
-        logging: false 
+        scale: 4, // అధిక రిజల్యూషన్ కోసం పెంచబడింది
+        logging: false,
+        useCORS: true,
+        backgroundColor: '#fffbf5' // నేపథ్యాన్ని స్పష్టంగా పేర్కొనడం
     }).then(canvas => {
+        // డౌన్‌లోడ్ తరగతిని తీసివేయండి
+        document.body.classList.remove('downloading');
+
         const image = canvas.toDataURL('image/png');
         const link = document.createElement('a');
         link.href = image;
-        link.download = `Yajnavalkya_Quiz_Certificate_${userName.replace(/\s/g, '_')}_${new Date().toLocaleDateString('en-GB').replace(/\//g, '-')}.png`;
+        link.download = `Yajnavalkya_Certificate_${userName.replace(/\s/g, '_')}_${new Date().toLocaleDateString('en-GB').replace(/\//g, '-')}.png`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
