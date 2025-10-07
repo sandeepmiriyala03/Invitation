@@ -495,10 +495,8 @@ function showResults(currentScore) {
             <div style="text-align: left;"><i class="far fa-calendar-alt"></i> తేదీ: ${dateStr}</div>
             <div style="text-align: right;"><i class="far fa-clock"></i> సమయం: ${timeStr}</div>
         </div>
-
-        <p class="user-name-display">${userName}</p>
-        
-        <p style="font-weight: 400; font-size: 1.1rem; color: #333;">ఈ క్విజ్‌లో పాల్గొని, ఈ స్థాయిని సాధించినందుకు **ధన్యవాదాలు**:</p>
+        <p class="user-name-display">${userName}</p>  
+        <p style="font-weight: 300; font-size: 1.1rem; color: #333;">ఈ క్విజ్‌లో పాల్గొని, ఈ స్థాయిని సాధించినందుకు **ధన్యవాదాలు**:</p>
 
         <p style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color);">స్థాయి: **${resultText}**</p>
         
