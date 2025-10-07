@@ -325,7 +325,7 @@ function createQuizUI() {
 
     const desc = document.createElement('p');
     desc.className = 'section-description';
-    desc.innerText = `${userName} గారూ, ఈ ${TOTAL_QUESTIONS_TO_DISPLAY} ప్రశ్నలకు సరైన సమాధానం ఎంచుకోండి.`;
+    desc.innerText = `${userName} గారు, ఈ ${TOTAL_QUESTIONS_TO_DISPLAY} ప్రశ్నలకు సరైన సమాధానం ఎంచుకోండి.`;
     appRoot.appendChild(desc);
 
     let firstRadioInput = null;
