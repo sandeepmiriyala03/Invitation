@@ -209,9 +209,9 @@ function applyStyles() {
         }
 
         .certificate-title {
-            font-size: 2.5rem; 
+            font-size: 2 rem; 
             color: var(--primary-color);
-            font-weight: 500;
+            font-weight: 350;
             margin: 0 0 5px 0;
             padding-bottom: 5px;
             border-bottom: 2px solid var(--secondary-color);
@@ -489,7 +489,7 @@ function showResults(currentScore) {
     const certContainer = document.createElement('div');
     certContainer.id = 'certificateContainer';
     certContainer.innerHTML = `
-        <h5 class="certificate-title">శ్రీ యాజ్ఞవల్క్య జ్ఞానధృవపత్రం</h5>
+        <h5 class="certificate-title">శ్రీయాజ్ఞవల్క్య జ్ఞానధృవపత్రం</h5>
 
         <div class="date-time-row">
             <div style="text-align: left;"><i class="far fa-calendar-alt"></i> తేదీ: ${dateStr}</div>
@@ -498,27 +498,20 @@ function showResults(currentScore) {
         <p class="user-name-display">${userName}</p>  
         <p style="font-weight: 300; font-size: 1.1rem; color: #333;">ఈ క్విజ్‌లో పాల్గొని, ఈ స్థాయిని సాధించినందుకు **ధన్యవాదాలు**:</p>
 
-        <p style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color);">స్థాయి: **${resultText}**</p>
-        
-        ${statusIcon}
-
-        ${achievementText}
-
+        <p style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color);">స్థాయి: <b>${resultText}</b></p>
+        ${statusIcon}  ${achievementText}
         <p class="score-status-line">
             మీరు సాధించిన స్కోర్: <span class="score-value" style="color: ${statusColor};">${currentScore} / ${TOTAL_QUESTIONS_TO_DISPLAY}</span> 
             <span class="status-text" style="color: ${statusColor};">**${resultStatus}**</span>
         </p>
-
         <footer>
            <i class="fas fa-signature" style="color:#aaa;"></i> ఈ పత్రం జ్ఞానాభివృద్ధి కృషికి గుర్తింపుగా ఇవ్వబడింది.
             <br> ఓం పూర్ణమద:పూర్ణమిద:! పూర్ణాత్ పూర్ణాముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ! పూర్ణమేవావశిష్యతే||
         </footer>
     `;
     appRoot.appendChild(certContainer);
-
     const actionButtons = document.createElement('div');
     actionButtons.className = 'certificate-buttons';
-
     const downloadBtn = document.createElement('button');
     downloadBtn.className = 'action-btn download'; 
     downloadBtn.innerHTML = '<i class="fas fa-file-download"></i> సర్టిఫికెట్ డౌన్‌లోడ్ ';
@@ -534,9 +527,7 @@ function showResults(currentScore) {
     retryBtn.innerHTML = '<i class="fas fa-undo-alt"></i> మళ్లీ ప్రయత్నించండి';
     retryBtn.onclick = startQuiz; 
     actionButtons.appendChild(retryBtn);
-
     appRoot.appendChild(actionButtons);
-
     downloadBtn.focus();
 }
 
