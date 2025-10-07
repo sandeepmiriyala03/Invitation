@@ -29,7 +29,7 @@ const questions = [
     { q: "యాజ్ఞవల్క్య మహర్షి శాంతి కోసం ఏది పఠించాలని సూచించారు?", options: ["గాయత్రీ మంత్రం", "సహస్రనామం", "మహామృత్యుంజయ మంత్రం"], answer: 0, selected: null }
 ];
 
-// కొత్త ఫంక్షన్: ప్రశ్నల శ్రేణిని యాదృచ్ఛికంగా కలపడానికి (Fisher-Yates shuffle)
+
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -211,7 +211,7 @@ function applyStyles() {
         .certificate-title {
             font-size: 2.5rem; 
             color: var(--primary-color);
-            font-weight: 800;
+            font-weight: 500;
             margin: 0 0 5px 0;
             padding-bottom: 5px;
             border-bottom: 2px solid var(--secondary-color);
@@ -286,7 +286,7 @@ function applyStyles() {
                 width: 95%; 
             }
             .certificate-title {
-                font-size: 1.8rem; /* చిన్న స్క్రీన్‌కు టైటిల్ తగ్గించడం */
+                font-size: 1.2rem; /* చిన్న స్క్రీన్‌కు టైటిల్ తగ్గించడం */
             }
             .user-name-display {
                 font-size: 1.5rem; /* చిన్న స్క్రీన్‌కు పేరు తగ్గించడం */
@@ -489,7 +489,7 @@ function showResults(currentScore) {
     const certContainer = document.createElement('div');
     certContainer.id = 'certificateContainer';
     certContainer.innerHTML = `
-        <h3 class="certificate-title">శ్రీ యాజ్ఞవల్క్య జ్ఞానధృవపత్రం</h3>
+        <h5 class="certificate-title">శ్రీ యాజ్ఞవల్క్య జ్ఞానధృవపత్రం</h5>
 
         <div class="date-time-row">
             <div style="text-align: left;"><i class="far fa-calendar-alt"></i> తేదీ: ${dateStr}</div>
