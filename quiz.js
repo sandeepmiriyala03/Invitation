@@ -495,8 +495,7 @@ function showResults(score) {
             <p style="font-weight: 600; color:${isPassed ? 'var(--success-color)' : 'var(--failure-color)'}">${resultText}</p>
         </div>
 
-        <footer>
-          ఓం పూర్ణమద:పూర్ణమిద:!పూర్ణాత్ పూర్ణాముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ !పూర్ణమేవావశిష్యతే ||
+        <footer>ఓం పూర్ణమద:పూర్ణమిద:!పూర్ణాత్ పూర్ణాముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ!పూర్ణమేవావశిష్యతే||
         </footer>
     `;
     appRoot.appendChild(certContainer);
