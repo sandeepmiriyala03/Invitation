@@ -319,7 +319,7 @@ function createQuizUI() {
 
     // సబ్మిట్ బటన్
     const submitBtn = document.createElement('button');
-    submitBtn.innerText = 'సబ్మిట్ చేసి ఫలితం చూడండి';
+    submitBtn.innerText = 'ఫలితం చూడండి';
     submitBtn.className = 'submit-button';
     submitBtn.onclick = evaluateQuiz;
     appRoot.appendChild(submitBtn);
@@ -377,7 +377,8 @@ function showResults(score) {
     // 1. డౌన్‌లోడ్ బటన్ (html2canvas అవసరం)
     const downloadBtn = document.createElement('button');
     downloadBtn.className = 'action-btn';
-    downloadBtn.innerText = 'సర్టిఫికెట్ డౌన్‌లోడ్ (Image)';
+    downloadBtn.style.backgroundColor = '#007bff';
+    downloadBtn.innerText = 'సర్టిఫికెట్ డౌన్‌లోడ్ ';
     downloadBtn.onclick = () => downloadCertificate(certContainer);
     actionButtons.appendChild(downloadBtn);
 
