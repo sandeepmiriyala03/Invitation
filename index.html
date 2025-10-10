@@ -411,17 +411,21 @@ body {
     line-height: 1.2;
     padding: 15px 0;
 }
-
 .auspicious-text {
-    font-size: clamp(1.2rem, 3.5vw, 1.6rem); /* Slightly smaller max size, smoother scaling */
-    color: #9c4a00; /* Increased contrast for mobile screens */
+    font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+    color: #9c4a00;
     font-weight: 700;
-    margin: 0.25em 0; /* More vertical breathing space */
-    letter-spacing: 0.1rem; /* Slightly reduced for dense mobile lines */
+    margin: 0.25em 0;
+    letter-spacing: 0.05rem; /* reduced spacing */
     font-family: 'Noto Serif Telugu', serif;
-    text-align: center; /* Ensures centered text on narrow screens */
-    line-height: 1.3; /* Improves readability on small displays */
+    text-align: center;
+    line-height: 1.3;
+    white-space: nowrap;      /* Prevent line breaks */
+    overflow-x: auto;         /* Enable horizontal scroll if needed */
+    padding: 0 1rem;
+    display: block;
 }
+
 
 .main-heading {
     font-size: clamp(1.8rem, 6vw, 2.8rem);
@@ -1842,10 +1846,6 @@ audio#ttdaudio {
 
 <script type="text/javascript">
  
-
-/**
- * Smoothly scrolls the viewport to the top of the page.
- */
 function scrollToTop() {
     window.scrollTo({
         top: 0,
