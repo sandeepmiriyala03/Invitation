@@ -60,7 +60,7 @@ body {
     gap: 10px;
 }
 .site-title {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Noto Sans Telugu', serif;
     font-weight: 900;
     font-size: clamp(1.5rem, 5vw, 2.2rem);
     margin: 0;
@@ -1991,13 +1991,14 @@ document.addEventListener('DOMContentLoaded', generateSimpleGallery);
       video.currentTime = 0;
     }
   });
-  function setupMobileMenuToggle() {
+function setupMobileMenuToggle() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     const fullMenuContainer = document.getElementById('full-menu-container');
 
     if (!hamburger || !navMenu || !fullMenuContainer) return;
 
+    // Toggle menu open/close
     const toggleMenu = () => {
         fullMenuContainer.classList.toggle('active');
         navMenu.classList.toggle('active');
@@ -2005,17 +2006,30 @@ document.addEventListener('DOMContentLoaded', generateSimpleGallery);
         hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
     };
 
+    // Hamburger click
     hamburger.addEventListener('click', toggleMenu);
 
+    // Close menu when a nav link is clicked (on mobile)
     const navLinks = navMenu.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            if (fullMenuContainer.classList.contains('active')) {
+            if (window.innerWidth <= 780 && navMenu.classList.contains('active')) {
                 toggleMenu();
             }
         });
     });
+
+    // Optional: Close menu on resize to desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 780) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            fullMenuContainer.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        }
+    });
 }
+
 document.addEventListener('DOMContentLoaded', setupMobileMenuToggle);
 
 </script>
