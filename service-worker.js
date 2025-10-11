@@ -22,7 +22,9 @@ const urlsToCache = [
   '/TTD Video.mp4',
   '/శ్రీ యాజ్ఞవల్క్యు సుప్రభాత స్తోత్రం.mp3',
   '/llm telugu.mp4',
-  '/శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం.pdf'
+  '/శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం.pdf',
+  '/quiz.js',
+  '/gotra.js'
 ];
 
 // Install event: cache files and activate immediately

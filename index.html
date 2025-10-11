@@ -1757,43 +1757,41 @@ button {
 </section>
 <section id="PravarGenerator" tabindex="-1" class="main-section pravar-section" aria-labelledby="app-title">
     <div id="pravar-app-root">
-        <div class="container" role="main">    
+        <div class="container" role="main"> 	
             <div id="welcomeText" class="welcome-text" style="display:none" aria-live="polite"></div>
             <div id="errorMessages" class="error-box" role="alert" aria-live="assertive"></div> 
-   <div>
-    <h5 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; margin-bottom: 15px;">
-        శుక్ల యజుర్వేద ప్రవర వివరాలు పొందండి
-    </h5>
-    
-    <p style="background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
-        <strong style="color: #856404;">ముఖ్య గమనిక:</strong> మీ గోత్రం మరియు పేరు వివరాలు మా వద్ద **సేవ్ చేయబడవు**. మీ ప్రవర వివరాలను సులభంగా అందించడమే మా ఏకైక లక్ష్యం.
-    </p>
-    
-    <p style="font-size: 1.05em; margin-bottom: 10px;">
-        ప్రవర వివరాలను వీక్షించడానికి, ఈ సులభమైన 3 దశలను అనుసరించండి:
-    </p>
+            <div>
+                <h5 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; margin-bottom: 15px;">
+                    శుక్ల యజుర్వేద ప్రవర వివరాలు పొందండి
+                </h5>
+                
+                <p style="background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+                    <strong style="color: #856404;">ముఖ్య గమనిక:</strong> మీ గోత్రం మరియు పేరు వివరాలు మా వద్ద **సేవ్ చేయబడవు**. మీ ప్రవర వివరాలను సులభంగా అందించడమే మా ఏకైక లక్ష్యం.
+                </p>
+                
+                <p style="font-size: 1.05em; margin-bottom: 10px;">
+                    ప్రవర వివరాలను వీక్షించడానికి, ఈ సులభమైన 3 దశలను అనుసరించండి:
+                </p>
 
-    <ol style="padding-left: 20px;">
-        <li style="margin-bottom: 8px;">మీ <strong style="color: #007bff;">పూర్తి పేరు</strong> మరియు <strong style="color: #007bff;">గోత్రం</strong> ఎంచుకోండి/నమోదు చేయండి.</li>
-        
-        <li style="margin-bottom: 8px;">
-            <strong style="color: #dc3545;">"ప్రవర వివరాలు చూపించు"</strong> బటన్‌ను క్లిక్ చేయండి.
-        </li>
-        
-        <li style="margin-bottom: 8px;">
-            వివరాలు వెంటనే ప్రదర్శించబడతాయి. మీరు వాటిని <strong style="color: #28a745;">TXT ఫైల్‌గా డౌన్‌లోడ్</strong>, <strong style="color: #28a745;">ఆడియో</strong>గా వినడం లేదా <strong style="color: #28a745;">WhatsApp</strong> ద్వారా పంచుకోవచ్చు.
-        </li>
-    </ol>
-</div>
+                <ol style="padding-left: 20px;">
+                    <li style="margin-bottom: 8px;">మీ <strong style="color: #007bff;">పూర్తి పేరు</strong> మరియు <strong style="color: #007bff;">గోత్రం</strong> ఎంచుకోండి/నమోదు చేయండి.</li>
+                    
+                    <li style="margin-bottom: 8px;">
+                        <strong style="color: #dc3545;">"ప్రవర వివరాలు చూపించు"</strong> బటన్‌ను క్లిక్ చేయండి.
+                    </li>
+                    
+                    <li style="margin-bottom: 8px;">
+                        వివరాలు వెంటనే ప్రదర్శించబడతాయి. మీరు వాటిని <strong style="color: #28a745;">TXT ఫైల్‌గా డౌన్‌లోడ్</strong>, <strong style="color: #28a745;">ఆడియో</strong>గా వినడం లేదా <strong style="color: #28a745;">WhatsApp</strong> ద్వారా పంచుకోవచ్చు.
+                    </li>
+                </ol>
+            </div>
             <div class="input-group">
-                <label for="nameInput">
-                   మీ పూర్తి పేరు <span class="required-star" aria-hidden="true">*</span>
-                </label>
+                <label for="nameInput">మీ పూర్తి పేరు <span class="required-star" aria-hidden="true">*</span></label> 
                 <input
                     type="text"
                     id="nameInput"
                     name="userName"
-                    placeholder="మీ పేరు (ఉదా: బాపిరాజు )"
+                    placeholder="మీ పేరు (ఉదా: బాపిరాజు)"
                     maxlength="50"
                     required
                     autocomplete="name"
@@ -1801,19 +1799,16 @@ button {
                 />
                 <small id="name-hint" class="input-hint">కనీసం 3 అక్షరాలు ఉండాలి.</small>
             </div>
+            
             <div class="input-group">
-                <label for="gotraSelect">
-                    గొత్రం <span class="required-star" aria-hidden="true">*</span>
-                </label>
+                <label for="gotraSelect">గొత్రం <span class="required-star" aria-hidden="true">*</span></label> 
                 <select id="gotraSelect" name="gotra" required>
                     <option value="">-- గొత్రం ఎంచుకోండి --</option>
                 </select>
             </div>
 
             <div class="input-group">
-                <label for="ganaInput">
-                    గణము (ఆటోమేటిక్) <span class="required-star" aria-hidden="true">*</span>
-                </label>
+                <label for="ganaInput">గణము (ఆటోమేటిక్) <span class="required-star" aria-hidden="true">*</span></label> 
                 <input
                     type="text"
                     id="ganaInput"
