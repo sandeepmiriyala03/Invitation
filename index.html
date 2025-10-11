@@ -1415,7 +1415,165 @@ audio#ttdaudio {
     /* color: #6A1B9A; ఈ రంగు ఇప్పటికే HTML లో ఉంది, కానీ ఇక్కడ పెట్టి ఓవర్‌రైడ్ చేయవచ్చు */
 }
 
+/* Error and Welcome Messages */
+#errorMessages {
+    color: #D32F2F;
+    background-color: #FFEBEE;
+    border: 1px solid #EF9A9A;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap; /* Preserve newlines from showError */
+    display: none; /* Controlled by JS */
+}
 
+#welcomeText {
+    color: #388E3C;
+    background-color: #E8F5E9;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    font-weight: 500;
+    display: none; /* Controlled by JS */
+}
+
+/* Buttons */
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap; /* Allows buttons to wrap on small screens */
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+/* --- Base Button Styles (Content-Sized by Default) --- */
+.action-btn {
+    /* Base styling for all buttons: removed width: 100% */
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    user-select: none;
+}
+
+.action-btn:active {
+    transform: scale(0.99);
+}
+
+/* --- Utility Class: Apply this to buttons that must stretch (Generate & Reset) --- */
+.full-width-btn {
+    width: 100%;
+}
+
+/* --- Primary Button: Generate (#generateBtn) --- */
+/* Add the .full-width-btn class to the generate button in your HTML */
+#generateBtn {
+    background-color: #6A1B9A;
+    color: white;
+}
+
+#generateBtn:hover {
+    background-color: #4A148C;
+}
+
+/* --- Tertiary Button: Reset (Use the tertiary-btn class and .full-width-btn class in HTML) --- */
+.tertiary-btn {
+    background-color: #E0E0E0;
+    color: #424242;
+    border: 1px solid #BDBDBD;
+}
+
+.tertiary-btn:hover {
+    background-color: #BDBDBD;
+    color: #212121;
+}
+
+.reset-group {
+    margin-top: 30px;
+    border-top: 1px dashed #DDD;
+    padding-top: 20px;
+}
+
+/* --- Secondary Action Buttons Row (#actionButtons) --- */
+
+#actionButtons {
+    justify-content: center;
+    margin-top: 15px;
+    display: none; /* Controlled by JS */
+    gap: 10px;
+    flex-wrap: wrap; /* Allows buttons to wrap naturally */
+}
+
+#actionButtons button {
+    /* These buttons are content-sized by default (no width: 100%) */
+    background-color: #00897B;
+    color: white;
+    /* Flex-grow: 0 ensures they only take up the necessary content width */
+    flex-grow: 0;
+}
+
+#actionButtons button:hover {
+    background-color: #00695C;
+}
+
+#playAudioBtn, #stopAudioBtn {
+    background-color: #4DB6AC;
+}
+
+#playAudioBtn:hover, #stopAudioBtn:hover {
+    background-color: #26A69A;
+}
+
+#stopAudioBtn {
+    display: none;
+}
+
+/* --- Final Message Area (No Change) --- */
+#finalMessage {
+    background-color: #FFFDE7;
+    border: 1px dashed #FFD700;
+    padding: 20px;
+    margin-top: 25px;
+    border-radius: 8px;
+    white-space: pre-wrap;
+    font-family: 'Garamond', serif;
+    font-size: 1.1rem;
+    color: #1A237E;
+    display: none;
+    min-height: 100px;
+}
+
+/* =======================================
+   RESPONSIVENESS: MOBILE-SPECIFIC STYLES
+   ======================================= */
+@media (max-width: 600px) {
+    /* On smaller screens, force the content-sized secondary action buttons 
+       to stretch and fill the width for easy tapping. */
+    #actionButtons button {
+        width: 100%;
+        /* You can set a min-height here if needed, but padding should suffice */
+    }
+
+    /* To prevent the reset button from having huge margins on mobile if the 
+       reset-group is too wide, we adjust the container padding if necessary.
+       (Assuming your main .container handles its own responsiveness) */
+}
     </style>
 </head>
 <body>
@@ -1454,18 +1612,20 @@ audio#ttdaudio {
             </span>
             క్విజ్
         </a>
+
+           <a href="#PravarGenerator" class="nav-link">
+            <span class="material-icons nav-icon" style="margin-right: 8px;">
+                event
+            </span>
+          మీ ప్రవర 
+        </a>
                 <a href="#main" class="nav-link">
             <span class="material-icons nav-icon" style="margin-right: 8px;">
                 home
             </span>
-            ఆహ్వానం
+             వివరాలు 
         </a>
-        <a href="#program-details" class="nav-link">
-            <span class="material-icons nav-icon" style="margin-right: 8px;">
-                event
-            </span>
-            వివరములు
-        </a>
+     
         <a href="#invitations" class="nav-link">
             <span class="material-icons nav-icon" style="margin-right: 8px;">
                 file_download
@@ -1595,7 +1755,114 @@ audio#ttdaudio {
        <div id="quizApp">
         </div>
 </section>
+<section id="PravarGenerator" tabindex="-1" class="main-section pravar-section" aria-labelledby="app-title">
+    <div id="pravar-app-root">
+        <div class="container" role="main">    
+            <div id="welcomeText" class="welcome-text" style="display:none" aria-live="polite"></div>
+            <div id="errorMessages" class="error-box" role="alert" aria-live="assertive"></div> 
+   <div>
+    <h5 style="color: #4CAF50; border-bottom: 2px solid #4CAF50; padding-bottom: 5px; margin-bottom: 15px;">
+        శుక్ల యజుర్వేద ప్రవర వివరాలు పొందండి
+    </h5>
+    
+    <p style="background-color: #fff3cd; color: #856404; border: 1px solid #ffeeba; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+        <strong style="color: #856404;">ముఖ్య గమనిక:</strong> మీ గోత్రం మరియు పేరు వివరాలు మా వద్ద **సేవ్ చేయబడవు**. మీ ప్రవర వివరాలను సులభంగా అందించడమే మా ఏకైక లక్ష్యం.
+    </p>
+    
+    <p style="font-size: 1.05em; margin-bottom: 10px;">
+        ప్రవర వివరాలను వీక్షించడానికి, ఈ సులభమైన 3 దశలను అనుసరించండి:
+    </p>
 
+    <ol style="padding-left: 20px;">
+        <li style="margin-bottom: 8px;">మీ <strong style="color: #007bff;">పూర్తి పేరు</strong> మరియు <strong style="color: #007bff;">గోత్రం</strong> ఎంచుకోండి/నమోదు చేయండి.</li>
+        
+        <li style="margin-bottom: 8px;">
+            <strong style="color: #dc3545;">"ప్రవర వివరాలు చూపించు"</strong> బటన్‌ను క్లిక్ చేయండి.
+        </li>
+        
+        <li style="margin-bottom: 8px;">
+            వివరాలు వెంటనే ప్రదర్శించబడతాయి. మీరు వాటిని <strong style="color: #28a745;">TXT ఫైల్‌గా డౌన్‌లోడ్</strong>, <strong style="color: #28a745;">ఆడియో</strong>గా వినడం లేదా <strong style="color: #28a745;">WhatsApp</strong> ద్వారా పంచుకోవచ్చు.
+        </li>
+    </ol>
+</div>
+            <div class="input-group">
+                <label for="nameInput">
+                   మీ పూర్తి పేరు <span class="required-star" aria-hidden="true">*</span>
+                </label>
+                <input
+                    type="text"
+                    id="nameInput"
+                    name="userName"
+                    placeholder="మీ పేరు (ఉదా: బాపిరాజు )"
+                    maxlength="50"
+                    required
+                    autocomplete="name"
+                    aria-describedby="name-hint"
+                />
+                <small id="name-hint" class="input-hint">కనీసం 3 అక్షరాలు ఉండాలి.</small>
+            </div>
+            <div class="input-group">
+                <label for="gotraSelect">
+                    గొత్రం <span class="required-star" aria-hidden="true">*</span>
+                </label>
+                <select id="gotraSelect" name="gotra" required>
+                    <option value="">-- గొత్రం ఎంచుకోండి --</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="ganaInput">
+                    గణము (ఆటోమేటిక్) <span class="required-star" aria-hidden="true">*</span>
+                </label>
+                <input
+                    type="text"
+                    id="ganaInput"
+                    name="gana"
+                    value=""
+                    readonly
+                    placeholder="గోత్రం ఎంచుకున్న తర్వాత కనిపిస్తుంది"
+                    aria-readonly="true"
+                />
+            </div>
+
+            <div class="main-action-group">
+                <button id="generateBtn" type="button" class="action-btn primary-btn full-width-btn" title="మీరు నమోదు చేసిన వివరాలతో ప్రవరను రూపొందించండి">
+                    <span class="spinner" style="display:none;"></span> ప్రవర వివరాలు చూపించు
+                </button>
+            </div>
+            
+            <div class="result-area">
+                <p class="result-label" id="result-label" style="display:none;">మీ ప్రవర </p>
+                <pre id="finalMessage" class="message-box" tabindex="0" style="display:none" aria-live="polite" aria-labelledby="result-label"></pre>
+            </div>
+
+            <div id="actionButtons" class="buttons-row" style="display:none">
+            
+                <button type="button" id="downloadBtn" class="secondary-btn icon-btn download-btn" title="ప్రవరను TXT ఫైల్‌గా డౌన్‌లోడ్ చేయండి">
+                    <span aria-hidden="true">⬇️</span> TXT డౌన్లోడ్
+                </button>
+                <button type="button" id="playAudioBtn" class="secondary-btn icon-btn audio-play-btn" title="ప్రవరను వినండి">
+                    <span aria-hidden="true">🔊</span> ఆడియో ప్లే
+                </button>
+                <button type="button" id="stopAudioBtn" class="secondary-btn icon-btn audio-stop-btn" title="ఆడియో ప్లేబ్యాక్ ఆపండి" style="display:none">
+                    <span aria-hidden="true">⏹️</span> ఆడియో ఆపు
+                </button>
+                <button type="button" id="whatsappShareBtn" class="secondary-btn icon-btn share-btn" title="WhatsApp ద్వారా పంచుకోండి">
+                    <span aria-hidden="true">📲</span> WhatsAppలో పంచుకోండి
+                </button>
+            </div>
+            
+            <div class="reset-group">
+                <button id="resetBtn" type="button" class="action-btn tertiary-btn full-width-btn" title="ఫారం వివరాలను మరియు సేవ్ చేసిన డేటాను తొలగించండి">
+                    <span aria-hidden="true">🗑️</span> డాటా తొలగించు
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+  </div>
 <section id="main" tabindex="0" class="main-section">
 
     <div class="title-block">
@@ -1654,7 +1921,7 @@ audio#ttdaudio {
 <section id="program-details" tabindex="0" class="program-section">
     
     <h2 class="program-header">
-        <span class="material-icons program-icon">event_note</span> కార్యక్రమ వివరములు:
+        <span class="material-icons program-icon">event_note</span> కార్యక్రమ వివరాలు :
     </h2>
     
     <p class="program-date">
@@ -2029,5 +2296,6 @@ document.addEventListener('DOMContentLoaded', setupMobileMenuToggle);
 </script>
   <script src="pwa.js"></script>
   <script src="quiz.js"></script> 
+  <script src="gotra.js"></script>
 </body>
 </html>
