@@ -342,7 +342,7 @@ function showNameInputScreen() {
 
         <button class="action-btn" onclick="initializeQuiz()">క్విజ్ ప్రారంభించండి <i class="fas fa-arrow-right"></i></button>
     `;
-    document.getElementById('nameInput').focus();
+   // document.getElementById('nameInput').focus();
 }
 
 function initializeQuiz() {
