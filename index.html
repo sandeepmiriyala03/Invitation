@@ -779,33 +779,59 @@ body {
     padding: 0 10px;
 }
 
-/* Download Button Styling */
+/* Download Button Styling - Responsive */
 .download-btn {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    padding: 15px 30px;
+    padding: 10px 20px;
     background-color: #ff9800; /* Bright Orange */
     color: white;
     border-radius: 50px;
-    font-size: clamp(1.2rem, 4vw, 1.5rem);
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
     font-weight: bold;
-    box-shadow: 0 6px 15px rgba(255, 152, 0, 0.5);
+    box-shadow: 0 4px 10px rgba(255, 152, 0, 0.4);
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .download-btn:hover,
 .download-btn:focus {
     background-color: #f57c00; /* Darker Orange on hover */
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.7);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 152, 0, 0.6);
     outline: none;
 }
 
 .download-icon {
-    margin-right: 10px;
-    font-size: 1.8rem;
+    margin-right: 8px;
+    font-size: clamp(1.2rem, 4vw, 1.4rem);
 }
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    .download-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+    
+    .download-icon {
+        margin-right: 6px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .download-btn {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .download-icon {
+        margin-right: 5px;
+        font-size: 1.1rem;
+    }
+}
+
 
 /* --- Gallery and Media Section Styling --- */
 
