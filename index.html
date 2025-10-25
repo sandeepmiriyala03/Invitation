@@ -1574,7 +1574,26 @@ button {
        reset-group is too wide, we adjust the container padding if necessary.
        (Assuming your main .container handles its own responsiveness) */
 }
-    </style>
+.table-like {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  .table-row {
+    display: table-row;
+  }
+  .table-cell {
+    display: table-cell;
+    border: 1px solid #ccc;
+    padding: 8px;
+    vertical-align: middle;
+  }
+  .table-header {
+    font-weight: bold;
+    background-color: #f2f2f2;
+  }
+  </style>
 </head>
 <body>
 <div id="full-menu-container" class="combined-header">     
@@ -1955,25 +1974,33 @@ button {
     </div>
 </section>
 
-<section id="invitations" tabindex="0" class="invitation-section">
-    
-    <h2 class="invitation-header">
-        <span class="material-icons invitation-icon">file_download</span> ఆహ్వాన పత్రం
-    </h2>
-    
-    <p class="invitation-description">
-        శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం నుండి పంపబడుతున్న ఈ పవిత్ర ఆహ్వానపత్రాన్ని (PDF) డౌన్‌లోడ్ చేసుకోండి. ఈ శుభకార్యానికి మీ బంధువులు, స్నేహితులను సంతోషంగా ఆహ్వానించండి.
-    </p>
-    
-    <div style="text-align: center;">
-        <a href="శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం.pdf" 
-           download 
-           class="download-btn">
-            <span class="material-icons download-icon">file_download</span> 
-            ఆహ్వానం డౌన్‌లోడ్ (PDF)
-        </a>
+<section id="invitations" tabindex="0" class="invitation-section">  
+    <h3 class="invitation-header">
+        <span class="material-icons invitation-icon">file_download</span>పత్రాలు 
+    </h3>
+  <div class="table-like">
+  <div class="table-row table-header">
+    <div class="table-cell">క్రమ సంఖ్య</div>
+    <div class="table-cell">శీర్షిక</div>
+    <div class="table-cell">వివరణ</div>
+    <div class="table-cell">డౌన్‌లోడ్</div>
+  </div>
+
+<div class="table-row">
+    <div class="table-cell">1</div>
+  <div class="table-cell">ఆహ్వానం</div>
+    <div class="table-cell">జయంతి ఆహ్వానం
+   </div>
+    <div class="table-cell">
+      <a href="శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం.pdf" download class="download-btn">
+        <span class="material-icons">file_download</span> డౌన్‌లోడ్ 
+      </a>
     </div>
-    
+  
+  </div>
+
+</div>
+
 </section>
 
 <section id="gallery" tabindex="0" class="media-section">
@@ -2010,11 +2037,34 @@ button {
     </h3>
 <div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ"> 
   <div class="image-gallery" aria-label="ఆధ్యాత్మిక కార్యక్రమం ఫోటో గ్యాలరీ" id="dynamic-gallery">
+<section id="invitations" tabindex="0" class="invitation-section">  
+    <h3 class="invitation-header">
+        <span class="material-icons invitation-icon">file_download</span>పత్రాలు 
+    </h3>
+  <div class="table-like">
+  <div class="table-row table-header">
+    <div class="table-cell">క్రమ సంఖ్య</div>
+    <div class="table-cell">శీర్షిక</div>
+    <div class="table-cell">వివరణ</div>
+    <div class="table-cell">డౌన్‌లోడ్</div>
+  </div>
+
+<div class="table-row">
+    <div class="table-cell">1</div>
+  <div class="table-cell">ఆహ్వానం</div>
+    <div class="table-cell">జయంతి ఆహ్వానం
+   </div>
+    <div class="table-cell">
+      <a href="శ్రీ యాజ్ఞవల్క్య జయంతుత్సవ సంఘం, పిఠాపురం.pdf" download class="download-btn">
+        <span class="material-icons">file_download</span> డౌన్‌లోడ్ 
+      </a>
     </div>
-<script>
+  
+  </div>
 
+</div>
 
-</script>
+</section></div>
 </div>
 </section>
 
@@ -2024,7 +2074,6 @@ button {
         <i class="fas fa-users committee-header-icon"></i>
         <b>సంఘ కార్యవర్గం</b> 
     </h3>
-
     <div class="committee-grid">
         
         <div class="member-card">
@@ -2063,14 +2112,11 @@ button {
             <p class="member-name">మల్లెమడుగుల వెంకటలక్ష్మీ నరసింహారావు</p>
         </div>
     </div>
-
     <hr class="contact-hr">
-
     <h4 class="contact-subheader">
         <i class="fas fa-map-marked-alt contact-subheader-icon"></i>
         సంప్రదించవలసిన చిరునామా:
     </h4>
-
     <div class="contact-info-block">     
         <p class="person-name">
             <i class="fas fa-user-circle" style="margin-right: 8px; color: #333;"></i> మానుగర్ర సుబ్రహ్మణ్యేశ్వరరావు
@@ -2080,7 +2126,6 @@ button {
             సూర్యచంద్రా రైస్ మిల్లు వెనుక, పిఠాపురం పోస్ట్ (మండలం), కాకినాడ జిల్లా.
         </p>
     </div>
-
     <div class="marquee-container">
   <marquee behavior="scroll" direction="left" scrollamount="5">
     ఓం పూర్ణమద: పూర్ణమిద:! పూర్ణాత్ పూర్ణా ముదచ్యతే పూర్ణాస్యపూర్ణమాదాయ ! పూర్ణ మే వావశిష్యతే
