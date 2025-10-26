@@ -2007,14 +2007,14 @@ button {
     
     <div class="table-like">
         <div class="table-row table-header">
-            <div class="table-cell">క్రమ సంఖ్య</div>
+         
             <div class="table-cell">శీర్షిక</div>
             <div class="table-cell">వివరణ</div>
             <div class="table-cell">డౌన్‌లోడ్</div>
         </div>
 
         <div class="table-row">
-            <div class="table-cell">1</div>
+         
             <div class="table-cell">ఆహ్వానం</div>
             <div class="table-cell">జయంతి ఆహ్వానం</div>
             <div class="table-cell">
@@ -2025,7 +2025,7 @@ button {
         </div>
 
         <div class="table-row">
-            <div class="table-cell">2</div>
+         
             <div class="table-cell">బ్రహ్మ విద్య</div>
             <div class="table-cell">శ్రీహరిమన్నారు గారి వివరణ</div>
             <div class="table-cell">
@@ -2036,7 +2036,7 @@ button {
         </div>
 
         <div class="table-row">
-            <div class="table-cell">3</div>
+        
             <div class="table-cell">శ్రీ యాజ్ఞవల్క్య చరిత్రము </div>
             <div class="table-cell"> శ్రీహరిమన్నారు గారి వివరణ  </div>
             <div class="table-cell">
@@ -2047,7 +2047,7 @@ button {
         </div>
 
         <div class="table-row">
-            <div class="table-cell">4</div>
+      
             <div class="table-cell">శ్రీ యాజ్ఞవల్క్య</div>
             <div class="table-cell">శ్రీహరిమన్నారు గారి వివరణ</div>
             <div class="table-cell">
@@ -2058,7 +2058,7 @@ button {
         </div>
 
          <div class="table-row">
-            <div class="table-cell">5</div>
+        
             <div class="table-cell">శుక్ల యజుర్వేద సంధ్యావందనం</div>
             <div class="table-cell">శుక్ల యజుర్వేద సంధ్యావందనం </div>
             <div class="table-cell">
@@ -2069,7 +2069,7 @@ button {
         </div>
 
         <div class="table-row">
-            <div class="table-cell">6</div>
+     
             <div class="table-cell">శ్రీ యాజ్ఞవల్క్య శతకము</div>
             <div class="table-cell"> రచన చింతా రామకృష్ణారావు గారు రచించారు.</div>
             <div class="table-cell">
@@ -2082,8 +2082,49 @@ button {
     <div class="acknowledgment-section" style="margin-top: 20px; text-align: center; font-style: italic; color: #666;">
     <p>శ్రీ కూచి శ్రీహరిమన్నారు గారు అందించిన విలువైన సమాచారానికి ధన్యవాదాలు</p>
 </div>
-
 </section>
+
+
+<section id="deepam" class="main-section" 
+  style="text-align:center; background:#fff8e1; border-radius:16px; padding:40px 20px; margin:40px auto; max-width:720px; box-shadow:0 6px 20px rgba(0,0,0,0.1);">
+  
+  <h2 style="color:#6A1B9A; font-family:'Noto Serif Telugu', serif; font-weight:700; font-size:1.8rem; margin-bottom:10px;">
+    🪔 వర్చువల్ దీపం వెలిగించండి
+  </h2>
+
+  <p style="font-size:1.1rem; color:#4A148C; margin-bottom:25px;">
+    భక్తితో ఒక దీపం వెలిగించండి — ఆధ్యాత్మిక కాంతిని పంచుకుందాం 🌸  
+  </p>
+
+  <!-- Lamp Display -->
+  <div id="deepamContainer" style="margin:20px auto; position:relative; width:100%; display:flex; flex-direction:column; align-items:center;">
+    <div id="diya" style="font-size:5rem; transition:transform 0.3s ease;">🪔</div>
+    <div id="sparkle" style="position:absolute; top:-10px; left:50%; transform:translateX(-50%); font-size:2rem; color:gold; opacity:0;">✨</div>
+  </div>
+
+  <!-- Name Input -->
+  <div style="margin:20px auto;">
+    <input id="nameInput" type="text" placeholder="మీ పేరు (ఐచ్ఛికం)" 
+           style="padding:10px 14px; border-radius:12px; border:1px solid #ccc; font-size:1rem; width:80%; max-width:380px; text-align:center;">
+  </div>
+
+  <!-- Light Button -->
+  <button id="lightBtn"
+          style="background-color:#ff9800; color:white; border:none; border-radius:25px; padding:12px 25px; font-size:1.1rem; cursor:pointer; box-shadow:0 4px 14px rgba(0,0,0,0.25); transition:all 0.3s ease;">
+          🪔 దీపం వెలిగించు
+  </button>
+
+  <!-- Counter -->
+  <p id="deepamCount" style="font-size:1.2rem; margin-top:20px; color:#6A1B9A; font-weight:600;">
+    మొత్తం వెలిగించిన దీపాలు: 0
+  </p>
+
+  <!-- Footer Message -->
+  <p style="margin-top:25px; font-size:0.9rem; color:#795548;">
+    🌼 ప్రతి దీపం ఒక ఆశీర్వాదం — మీ భక్తి కాంతిగా మారుతుంది 🌼
+  </p>
+</section>
+
 
 
 <section id="gallery" tabindex="0" class="media-section">
@@ -2391,5 +2432,6 @@ document.addEventListener('DOMContentLoaded', setupMobileMenuToggle);
   <script src="pwa.js"></script>
   <script src="quiz.js"></script> 
   <script src="gotra.js"></script>
+  <script src="virtual-deepam.js"></script>
 </body>
 </html>
